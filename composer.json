@@ -1,0 +1,10 @@
+{
+    "name": "phlexus/core",
+    "description": "Phlexus - Content Management System based on Phalcon PHP Framework",
+    "keywords": ["phlexus", "cms", "phalcon"],
+    "autoload": {
+        "psr-4": {
+            "Phlexus\\": "src/"
+        }
+    }
+}
