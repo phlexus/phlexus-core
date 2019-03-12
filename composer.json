@@ -2,6 +2,12 @@
     "name": "phlexus/core",
     "description": "Phlexus - Content Management System based on Phalcon PHP Framework",
     "keywords": ["phlexus", "cms", "phalcon"],
+    "require": {
+        "php": ">=7.2"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^8"
+    },
     "autoload": {
         "psr-4": {
             "Phlexus\\": "src/"
