@@ -2,10 +2,24 @@
 
 namespace Phlexus;
 
+use Phalcon\Mvc\Application as MvcApplication;
+
 class Application
 {
+    protected $app;
+
     public function __construct()
     {
-        // TODO
+        $this->app = new MvcApplication();
+    }
+
+    public function run()
+    {
+        return $this->getOutput();
+    }
+
+    public function getOutput()
+    {
+        return $this->app->handle()->getContent();
     }
 }
