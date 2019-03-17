@@ -4,9 +4,9 @@ namespace Phlexus\Providers;
 
 use LogicException;
 use Phalcon\DiInterface;
-use Phalcon\Mvc\User\Component;
+use Phalcon\Plugin;
 
-abstract class AbstractProvider extends Component implements ProviderInterface
+abstract class AbstractProvider extends Plugin implements ProviderInterface
 {
     /**
      * Provider name
