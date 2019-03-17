@@ -41,6 +41,10 @@ class RouterProvider extends AbstractProvider
 
                 $router->mount($group);
             }
+
+            $router->setDI(phlexus_container());
+
+            return $router;
         });
     }
 }
