@@ -67,6 +67,16 @@ class Application
     }
 
     /**
+     * Get current Application instance
+     *
+     * @return MvcApplication
+     */
+    public function getApplication()
+    {
+        return $this->app;
+    }
+
+    /**
      * Initialize the Service in the Dependency Injector Container.
      *
      * @param  ProviderInterface $provider
