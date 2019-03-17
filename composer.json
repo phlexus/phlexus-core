@@ -1,5 +1,5 @@
 {
-    "name": "phlexus/core",
+    "name": "phlexus/phlexus-core",
     "description": "Phlexus - Content Management System based on Phalcon PHP Framework",
     "keywords": ["phlexus", "cms", "phalcon"],
     "require": {
