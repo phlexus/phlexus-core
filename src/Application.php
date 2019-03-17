@@ -5,8 +5,12 @@ namespace Phlexus;
 use Phalcon\Di;
 use Phalcon\DiInterface;
 use Phalcon\Mvc\Application as MvcApplication;
+use Phlexus\Providers\DispatcherProvider;
 use Phlexus\Providers\ModulesProvider;
 use Phlexus\Providers\ProviderInterface;
+use Phlexus\Providers\ResponseProvider;
+use Phlexus\Providers\RouterProvider;
+use Phlexus\Providers\ViewProvider;
 
 class Application
 {
@@ -43,6 +47,10 @@ class Application
         Di::setDefault($this->di);
 
         $this->initializeProvider(new ModulesProvider($this->di));
+        $this->initializeProvider(new RouterProvider($this->di));
+        $this->initializeProvider(new ViewProvider($this->di));
+        $this->initializeProvider(new DispatcherProvider($this->di));
+        $this->initializeProvider(new ResponseProvider($this->di));
         $this->app->setDI($this->di);
     }
 
