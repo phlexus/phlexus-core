@@ -11,6 +11,9 @@
     "autoload": {
         "psr-4": {
             "Phlexus\\": "src/"
-        }
+        },
+        "files": [
+            "src/helpers.php"
+        ]
     }
 }
