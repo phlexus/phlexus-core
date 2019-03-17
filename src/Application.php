@@ -63,7 +63,7 @@ class Application
      */
     public function getOutput()
     {
-        return $this->app->handle()->getContent();
+        return $this->app->handle('/')->getContent();
     }
 
     /**
