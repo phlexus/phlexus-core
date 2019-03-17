@@ -56,7 +56,7 @@ class ModulesProvider extends AbstractProvider
             // TODO
         }
 
-        $application = container('bootstrap')->getApplication();
+        $application = phlexus_container('bootstrap')->getApplication();
         $application->registerModules($registeredModules);
     }
 }
