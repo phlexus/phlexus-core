@@ -45,7 +45,7 @@ abstract class Module implements ModuleInterface
      *
      * @return ManagerInterface
      */
-    public function getEventsManager()
+    public function getEventsManager() : ManagerInterface
     {
         $manager = $this->eventsManager;
         if ($manager instanceof ManagerInterface) {
