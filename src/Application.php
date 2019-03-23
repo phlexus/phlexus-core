@@ -8,6 +8,7 @@ use Phalcon\Mvc\Application as MvcApplication;
 use Phlexus\Providers\DispatcherProvider;
 use Phlexus\Providers\ModulesProvider;
 use Phlexus\Providers\ProviderInterface;
+use Phlexus\Providers\RegistryProvider;
 use Phlexus\Providers\ResponseProvider;
 use Phlexus\Providers\RouterProvider;
 use Phlexus\Providers\ViewProvider;
@@ -46,6 +47,7 @@ class Application
 
         Di::setDefault($this->di);
 
+        $this->initializeProvider(new RegistryProvider($this->di));
         $this->initializeProvider(new ModulesProvider($this->di));
         $this->initializeProvider(new RouterProvider($this->di));
         $this->initializeProvider(new ViewProvider($this->di));
