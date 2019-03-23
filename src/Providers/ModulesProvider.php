@@ -7,6 +7,11 @@ use Phalcon\Registry;
 class ModulesProvider extends AbstractProvider
 {
     /**
+     * Constant to find match in composer vendor packages
+     */
+    const PHLEXUS_NAMESPACE_PATTERN = 'Phlexus\Modules\\';
+
+    /**
      * Provider name
      *
      * @var string
@@ -14,28 +19,21 @@ class ModulesProvider extends AbstractProvider
     protected $providerName = 'modules';
 
     /**
-     * Array of all modules to configure / register / boot
-     *
-     * @var array
-     */
-    protected $modules = [];
-
-    public function configure()
-    {
-        // TODO
-    }
-
-    /**
      * Register application provider
      *
      * @return void
      */
-    public function register()
+    public function register(array $vendorModules = [])
     {
-        $configuredModules = $this->modules;
-        $this->di->setShared($this->providerName, function () use ($configuredModules) {
+        $modules = $this->prepareVendorModules($vendorModules);
+
+        phlexus_container('bootstrap')
+            ->getApplication()
+            ->registerModules($modules);
+
+        $this->di->setShared($this->providerName, function () use ($modules) {
             $registry = new Registry();
-            foreach ($configuredModules as $name => $module) {
+            foreach ($modules as $name => $module) {
                 $registry->offsetSet($name, (object)$module);
             }
 
@@ -44,19 +42,30 @@ class ModulesProvider extends AbstractProvider
     }
 
     /**
-     * Boot registered provider
-     *
-     * @see ModulesProvider::register()
-     * @return void
+     * @param array $vendorModules
+     * @return array
      */
-    public function boot()
+    protected function prepareVendorModules(array $vendorModules = []) : array
     {
-        $registeredModules = [];
-        foreach ($this->modules as $name => $module) {
-            // TODO
+        $modules = [];
+        foreach ($vendorModules as $namespace => $path) {
+            $phlexusPattern = str_replace('\\', '\\\\', self::PHLEXUS_NAMESPACE_PATTERN);
+            if (!preg_match('#^' . $phlexusPattern . '(\w+)#', $namespace, $matches)) {
+                continue;
+            }
+
+            $moduleName = $matches[1];
+            $className = self::PHLEXUS_NAMESPACE_PATTERN . $moduleName . '\\Module';
+
+            $modules[$moduleName] = [
+                'className' => $className,
+                'path' => $path[0] . DIRECTORY_SEPARATOR . 'Module.php',
+                'router' => $path[0] . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'routes.php',
+            ];
+
+            $this->di->setShared($className, $modules[$moduleName]);
         }
 
-        $application = phlexus_container('bootstrap')->getApplication();
-        $application->registerModules($registeredModules);
+        return $modules;
     }
 }

@@ -8,8 +8,8 @@ use Phalcon\Mvc\Application as MvcApplication;
 use Phlexus\Providers\DispatcherProvider;
 use Phlexus\Providers\ModulesProvider;
 use Phlexus\Providers\ProviderInterface;
-use Phlexus\Providers\RegistryProvider;
 use Phlexus\Providers\ResponseProvider;
+use Phlexus\Providers\RegistryProvider;
 use Phlexus\Providers\RouterProvider;
 use Phlexus\Providers\ViewProvider;
 
@@ -38,8 +38,9 @@ class Application
 
     /**
      * Application constructor
+     * @param array $vendorModules
      */
-    public function __construct()
+    public function __construct(array $vendorModules = [])
     {
         $this->di = new Di();
         $this->app = new MvcApplication($this->di);
@@ -48,11 +49,12 @@ class Application
         Di::setDefault($this->di);
 
         $this->initializeProvider(new RegistryProvider($this->di));
-        $this->initializeProvider(new ModulesProvider($this->di));
+        $this->initializeProvider(new ModulesProvider($this->di), $vendorModules);
         $this->initializeProvider(new RouterProvider($this->di));
         $this->initializeProvider(new ViewProvider($this->di));
         $this->initializeProvider(new DispatcherProvider($this->di));
         $this->initializeProvider(new ResponseProvider($this->di));
+
         $this->app->setDI($this->di);
     }
 
@@ -61,7 +63,7 @@ class Application
      *
      * @return string
      */
-    public function run()
+    public function run() : string
     {
         return $this->getOutput();
     }
@@ -71,7 +73,7 @@ class Application
      *
      * @return string
      */
-    public function getOutput()
+    public function getOutput() : string
     {
         return $this->app->handle('/')->getContent();
     }
@@ -81,7 +83,7 @@ class Application
      *
      * @return MvcApplication
      */
-    public function getApplication()
+    public function getApplication() : MvcApplication
     {
         return $this->app;
     }
@@ -90,11 +92,17 @@ class Application
      * Initialize the Service in the Dependency Injector Container.
      *
      * @param  ProviderInterface $provider
+     * @param array $parameters
      * @return $this
      */
-    protected function initializeProvider(ProviderInterface $provider)
+    protected function initializeProvider(ProviderInterface $provider, array $parameters = []) : Application
     {
-        $provider->register();
+        if (!empty($parameters)) {
+            $provider->register($parameters);
+        } else {
+            $provider->register();
+        }
+
         $provider->boot();
 
         $this->providers[$provider->getName()] = $provider;
