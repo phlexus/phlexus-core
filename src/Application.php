@@ -39,8 +39,9 @@ class Application
     /**
      * Application constructor
      * @param array $vendorModules
+     * @param array $customModules
      */
-    public function __construct(array $vendorModules = [])
+    public function __construct(array $vendorModules = [], array $customModules = [])
     {
         $this->di = new Di();
         $this->app = new MvcApplication($this->di);
@@ -48,8 +49,13 @@ class Application
 
         Di::setDefault($this->di);
 
+        $modules = [
+            'vendor' => $vendorModules,
+            'custom' => $customModules,
+        ];
+
         $this->initializeProvider(new RegistryProvider($this->di));
-        $this->initializeProvider(new ModulesProvider($this->di), $vendorModules);
+        $this->initializeProvider(new ModulesProvider($this->di), $modules);
         $this->initializeProvider(new RouterProvider($this->di));
         $this->initializeProvider(new ViewProvider($this->di));
         $this->initializeProvider(new DispatcherProvider($this->di));

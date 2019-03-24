@@ -21,11 +21,14 @@ class ModulesProvider extends AbstractProvider
     /**
      * Register application provider
      *
+     * @param array $rawModules
      * @return void
      */
-    public function register(array $vendorModules = [])
+    public function register(array $rawModules = [])
     {
-        $modules = $this->prepareVendorModules($vendorModules);
+        $vendorModules = $this->prepareVendorModules($rawModules['vendor']);
+        $customModules = $this->prepareCustomModules($rawModules['custom']);
+        $modules = array_merge($vendorModules, $customModules);
 
         phlexus_container('bootstrap')
             ->getApplication()
@@ -67,5 +70,14 @@ class ModulesProvider extends AbstractProvider
         }
 
         return $modules;
+    }
+
+    /**
+     * @param array $customModules
+     * @return array
+     */
+    protected function prepareCustomModules(array $customModules = []) : array
+    {
+        return $customModules;
     }
 }
