@@ -21,9 +21,7 @@ class ViewProvider extends AbstractProvider
     public function register()
     {
         $this->di->setShared($this->providerName, function() {
-            $view = new View();
-
-            return $view;
+            return new View();
         });
     }
 }
