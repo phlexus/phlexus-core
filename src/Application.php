@@ -103,12 +103,7 @@ class Application
      */
     protected function initializeProvider(ProviderInterface $provider, array $parameters = []) : Application
     {
-        if (!empty($parameters)) {
-            $provider->register($parameters);
-        } else {
-            $provider->register();
-        }
-
+        $provider->register($parameters);
         $provider->boot();
 
         $this->providers[$provider->getName()] = $provider;
