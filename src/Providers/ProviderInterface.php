@@ -9,9 +9,10 @@ interface ProviderInterface extends InjectionAwareInterface
     /**
      * Register application service.
      *
+     * @param array $parameters Custom parameters for Service Provider
      * @return void
      */
-    public function register();
+    public function register(array $parameters = []);
 
     /**
      * Package boot method.

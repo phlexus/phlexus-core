@@ -16,9 +16,10 @@ class RegistryProvider extends AbstractProvider
     /**
      * Register application service.
      *
+     * @param array $parameters
      * @return void
      */
-    public function register()
+    public function register(array $parameters = [])
     {
         $this->di->setShared($this->providerName, function(){
             return new Registry();

@@ -16,9 +16,10 @@ class ResponseProvider extends AbstractProvider
     /**
      * Register application provider
      *
+     * @param array $parameters
      * @return void
      */
-    public function register()
+    public function register(array $parameters = [])
     {
         $this->di->setShared($this->providerName, Response::class);
     }
