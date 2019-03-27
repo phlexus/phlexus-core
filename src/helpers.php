@@ -17,3 +17,26 @@ if (!function_exists('phlexus_container')) {
         return call_user_func_array([$default, 'get'], $args);
     }
 }
+
+if (!function_exists('phlexus_config')) {
+    /**
+     * Access configuration files
+     *
+     * Also can access nested values.
+     * Example: phlexus_config('config.db.name')
+     *
+     * @param mixed
+     * @return mixed
+     */
+    function phlexus_config()
+    {
+        $args = func_get_args();
+        $config = \Phalcon\Di::getDefault()->getShared('config');
+
+        if (empty($args)) {
+            return $config;
+        }
+
+        return call_user_func_array([$config, 'path'], $args);
+    }
+}
