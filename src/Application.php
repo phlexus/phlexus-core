@@ -5,6 +5,7 @@ namespace Phlexus;
 use Phalcon\Di;
 use Phalcon\DiInterface;
 use Phalcon\Mvc\Application as MvcApplication;
+use Phlexus\Providers\ConfigProvider;
 use Phlexus\Providers\DispatcherProvider;
 use Phlexus\Providers\ModulesProvider;
 use Phlexus\Providers\ProviderInterface;
@@ -38,11 +39,17 @@ class Application
 
     /**
      * Application constructor
+     * @param string $mode
+     * @param array $configs
      * @param array $vendorModules
      * @param array $customModules
      */
-    public function __construct(array $vendorModules = [], array $customModules = [])
-    {
+    public function __construct(
+        string $mode = 'default',
+        array $configs = [],
+        array $vendorModules = [],
+        array $customModules = []
+    ) {
         $this->di = new Di();
         $this->app = new MvcApplication($this->di);
         $this->di->setShared('bootstrap', $this);
@@ -55,6 +62,7 @@ class Application
         ];
 
         $this->initializeProvider(new RegistryProvider($this->di));
+        $this->initializeProvider(new ConfigProvider($this->di), $configs);
         $this->initializeProvider(new ModulesProvider($this->di), $modules);
         $this->initializeProvider(new RouterProvider($this->di));
         $this->initializeProvider(new ViewProvider($this->di));
