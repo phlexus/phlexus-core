@@ -42,13 +42,11 @@ class Application
      * @param string $mode
      * @param array $configs
      * @param array $vendorModules
-     * @param array $customModules
      */
     public function __construct(
         string $mode = 'default',
         array $configs = [],
-        array $vendorModules = [],
-        array $customModules = []
+        array $vendorModules = []
     ) {
         $this->di = new Di();
         $this->app = new MvcApplication($this->di);
@@ -58,7 +56,7 @@ class Application
 
         $modules = [
             'vendor' => $vendorModules,
-            'custom' => $customModules,
+            'custom' => $configs['modules'] ?: [],
         ];
 
         $viewConfigs = !empty($configs['view']) ? $configs['view'] : [];
