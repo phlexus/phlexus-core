@@ -56,10 +56,10 @@ class Application
 
         $modules = [
             'vendor' => $vendorModules,
-            'custom' => $configs['modules'] ?: [],
+            'custom' => $configs['modules'] ?? [],
         ];
 
-        $viewConfigs = !empty($configs['view']) ? $configs['view'] : [];
+        $viewConfigs = $configs['view'] ?? [];
 
         $this->initializeProvider(new RegistryProvider($this->di));
         $this->initializeProvider(new ConfigProvider($this->di), $configs);
