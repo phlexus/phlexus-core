@@ -19,10 +19,16 @@ class ViewProvider extends AbstractProvider
      * @param array $parameters
      * @return void
      */
-    public function register(array $parameters = [])
+    public function register(array $parameters = []): void
     {
-        $this->di->setShared($this->providerName, function() {
-            return new View();
+        $this->di->setShared($this->providerName, function() use ($parameters) {
+            $view = new View();
+
+            if (!empty($parameters['engines'])) {
+                $view->registerEngines($parameters['engines']);
+            }
+
+            return $view;
         });
     }
 }

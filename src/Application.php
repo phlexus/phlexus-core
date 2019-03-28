@@ -61,11 +61,13 @@ class Application
             'custom' => $customModules,
         ];
 
+        $viewConfigs = !empty($configs['view']) ? $configs['view'] : [];
+
         $this->initializeProvider(new RegistryProvider($this->di));
         $this->initializeProvider(new ConfigProvider($this->di), $configs);
         $this->initializeProvider(new ModulesProvider($this->di), $modules);
         $this->initializeProvider(new RouterProvider($this->di));
-        $this->initializeProvider(new ViewProvider($this->di));
+        $this->initializeProvider(new ViewProvider($this->di), $viewConfigs);
         $this->initializeProvider(new DispatcherProvider($this->di));
         $this->initializeProvider(new ResponseProvider($this->di));
 
