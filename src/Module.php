@@ -7,6 +7,13 @@ use Phalcon\Events\Manager;
 use Phalcon\Events\ManagerInterface;
 use Phlexus\Module\ModuleInterface;
 
+/**
+ * Phlexus Module Definition
+ *
+ * Current class must be extended inside each Custom Module
+ *
+ * @package Phlexus
+ */
 abstract class Module implements ModuleInterface
 {
     /**
