@@ -8,6 +8,7 @@ use Phalcon\Di;
 use Phalcon\DiInterface;
 use Phalcon\Mvc\Application as MvcApplication;
 use Phlexus\Providers\ConfigProvider;
+use Phlexus\Providers\DatabaseProvider;
 use Phlexus\Providers\DispatcherProvider;
 use Phlexus\Providers\ModelsManagerProvider;
 use Phlexus\Providers\ModelsMetadataProvider;
@@ -119,6 +120,10 @@ class Application
         $this->initializeProvider(new RouterProvider($this->di));
         $this->initializeProvider(new DispatcherProvider($this->di));
         $this->initializeProvider(new ResponseProvider($this->di));
+
+        if (!empty($configs['db'])) {
+            $this->initializeProvider(new DatabaseProvider($this->di), $configs['db']);
+        }
 
         // Init Mode Service Providers
         if ($mode == self::MODE_DEFAULT) {
