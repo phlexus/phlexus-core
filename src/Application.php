@@ -62,6 +62,13 @@ class Application
     protected $app;
 
     /**
+     * Application MVC request
+     *
+     * @var string
+     */
+    protected $requestUri = '/';
+
+    /**
      * Application mode
      *
      * Possible values: default and cli
@@ -136,7 +143,7 @@ class Application
      */
     public function getOutput() : string
     {
-        return $this->app->handle('/')->getContent();
+        return $this->app->handle($this->requestUri)->getContent();
     }
 
     /**
