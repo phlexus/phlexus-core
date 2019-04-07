@@ -7,10 +7,11 @@ use Phalcon\Mvc\Model\Metadata\Memory as Memory;
 class ModelsMetadataProvider extends AbstractProvider
 {
     /**
-     * The Service name.
+     * Provider name
+     *
      * @var string
      */
-    protected $serviceName = 'modelsMetadata';
+    protected $providerName = 'modelsMetadata';
 
     /**
      * {@inheritdoc}
@@ -19,7 +20,7 @@ class ModelsMetadataProvider extends AbstractProvider
      */
     public function register(array $parameters = [])
     {
-        $this->di->setShared($this->serviceName, function () {
+        $this->di->setShared($this->providerName, function () {
             return new Memory();
         });
     }
