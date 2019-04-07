@@ -9,6 +9,7 @@ use Phalcon\DiInterface;
 use Phalcon\Mvc\Application as MvcApplication;
 use Phlexus\Providers\ConfigProvider;
 use Phlexus\Providers\DispatcherProvider;
+use Phlexus\Providers\ModelsManagerProvider;
 use Phlexus\Providers\ModulesProvider;
 use Phlexus\Providers\ProviderInterface;
 use Phlexus\Providers\RegistryProvider;
@@ -104,6 +105,7 @@ class Application
         // Init Generic Service Providers
         $this->initializeProvider(new RegistryProvider($this->di));
         $this->initializeProvider(new ConfigProvider($this->di), $configs);
+        $this->initializeProvider(new ModelsManagerProvider($this->di));
         $this->initializeProvider(new ModulesProvider($this->di), $modules);
         $this->initializeProvider(new RouterProvider($this->di));
         $this->initializeProvider(new DispatcherProvider($this->di));
