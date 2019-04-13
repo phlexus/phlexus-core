@@ -15,6 +15,7 @@ use Phlexus\Providers\ModelsMetadataProvider;
 use Phlexus\Providers\ModulesProvider;
 use Phlexus\Providers\ProviderInterface;
 use Phlexus\Providers\RegistryProvider;
+use Phlexus\Providers\RequestProvider;
 use Phlexus\Providers\ResponseProvider;
 use Phlexus\Providers\RouterProvider;
 use Phlexus\Providers\ViewProvider;
@@ -117,6 +118,7 @@ class Application
         $this->initializeProvider(new ModelsManagerProvider($this->di));
         $this->initializeProvider(new ModelsMetadataProvider($this->di));
         $this->initializeProvider(new ModulesProvider($this->di), $modules);
+        $this->initializeProvider(new RequestProvider($this->di));
         $this->initializeProvider(new RouterProvider($this->di));
         $this->initializeProvider(new DispatcherProvider($this->di));
         $this->initializeProvider(new ResponseProvider($this->di));
