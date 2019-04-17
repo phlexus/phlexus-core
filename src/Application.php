@@ -10,6 +10,7 @@ use Phalcon\Mvc\Application as MvcApplication;
 use Phlexus\Providers\ConfigProvider;
 use Phlexus\Providers\DatabaseProvider;
 use Phlexus\Providers\DispatcherProvider;
+use Phlexus\Providers\EscaperProvider;
 use Phlexus\Providers\ModelsManagerProvider;
 use Phlexus\Providers\ModelsMetadataProvider;
 use Phlexus\Providers\ModulesProvider;
@@ -116,6 +117,7 @@ class Application
         $this->initializeProvider(new RouterProvider($this->di));
         $this->initializeProvider(new DispatcherProvider($this->di));
         $this->initializeProvider(new ResponseProvider($this->di));
+        $this->initializeProvider(new EscaperProvider($this->di));
         $this->initializeProvider(new TagProvider($this->di));
 
         if (!empty($configs['db'])) {
