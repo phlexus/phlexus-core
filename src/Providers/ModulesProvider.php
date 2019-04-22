@@ -60,6 +60,7 @@ class ModulesProvider extends AbstractProvider
             $moduleName = $matches[1];
             $className = self::PHLEXUS_NAMESPACE_PATTERN . $moduleName . '\\Module';
 
+            $moduleName = strtolower($moduleName);
             $modules[$moduleName] = [
                 'className' => $className,
                 'path' => $path[0] . DIRECTORY_SEPARATOR . 'Module.php',
