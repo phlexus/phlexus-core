@@ -8,6 +8,7 @@ use Phalcon\Di;
 use Phalcon\DiInterface;
 use Phalcon\Mvc\Application as MvcApplication;
 use Phlexus\Providers\ConfigProvider;
+use Phlexus\Providers\CookiesProvider;
 use Phlexus\Providers\DatabaseProvider;
 use Phlexus\Providers\DispatcherProvider;
 use Phlexus\Providers\EscaperProvider;
@@ -119,6 +120,7 @@ class Application
         $this->initializeProvider(new ResponseProvider($this->di));
         $this->initializeProvider(new EscaperProvider($this->di));
         $this->initializeProvider(new TagProvider($this->di));
+        $this->initializeProvider(new CookiesProvider($this->di));
 
         if (!empty($configs['db'])) {
             $this->initializeProvider(new DatabaseProvider($this->di), $configs['db']);
