@@ -2,7 +2,8 @@
 
 namespace Phlexus\Providers;
 
-use Phalcon\Session\Adapter\Files as Session;
+use Phalcon\Session\Manager;
+use Phalcon\Session\Adapter\Files;
 
 class SessionProvider extends AbstractProvider
 {
@@ -22,7 +23,8 @@ class SessionProvider extends AbstractProvider
     public function register(array $parameters = [])
     {
         $this->di->setShared($this->providerName, function () {
-            $session = new Session();
+            $session = new Manager();
+            $session->setHandler(new Files(['savePath' => '/tmp']));
             $session->start();
 
             return $session;
