@@ -20,6 +20,7 @@ use Phlexus\Providers\RegistryProvider;
 use Phlexus\Providers\RequestProvider;
 use Phlexus\Providers\ResponseProvider;
 use Phlexus\Providers\RouterProvider;
+use Phlexus\Providers\SessionProvider;
 use Phlexus\Providers\TagProvider;
 use Phlexus\Providers\ViewProvider;
 
@@ -121,6 +122,7 @@ class Application
         $this->initializeProvider(new EscaperProvider($this->di));
         $this->initializeProvider(new TagProvider($this->di));
         $this->initializeProvider(new CookiesProvider($this->di));
+        $this->initializeProvider(new SessionProvider($this->di));
 
         if (!empty($configs['db'])) {
             $this->initializeProvider(new DatabaseProvider($this->di), $configs['db']);
