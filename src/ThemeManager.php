@@ -2,7 +2,8 @@
 
 namespace Phlexus;
 
-use Phlexus\Theme\ThemeException;
+use Composer\Installer\PackageEvent;
+use Phlexus\Theme\ThemeInstaller;
 
 /**
  * Class ThemeManager
@@ -14,52 +15,30 @@ use Phlexus\Theme\ThemeException;
 class ThemeManager
 {
     /**
-     * Theme folder name
-     *
-     * @var string
+     * Themes directory located in root or project
      */
-    protected $themeName;
+    public const THEMES_DIR = 'themes';
 
     /**
-     * Themes path
-     *
-     * @var string
+     * Assets for themes which must be publicly accessible
      */
-    protected $themesPath;
+    public const THEMES_ASSETS_DIR = 'public/assets/themes';
 
     /**
-     * ThemeManager constructor.
-     *
-     * @param string $themeName
-     * @param string $themesPath
-     * @throws ThemeException
+     * @param PackageEvent $event
+     * @throws Theme\ThemeException
      */
-    public function __construct(string $themeName, string $themesPath)
+    public static function install(PackageEvent $event): void
     {
-        if (is_dir($themesPath)) {
-            throw new ThemeException('Themes directory do not exists');
-        }
+        $package = $event->getOperation()->getPackage();
+        $themesPath = __DIR__ . DIRECTORY_SEPARATOR . self::THEMES_DIR;
+        var_dump($themesPath); exit;
+        $publicPath = '';
 
-        if (is_dir($themesPath . DIRECTORY_SEPARATOR . $themeName)) {
-            throw new ThemeException('Theme directory do not exists');
-        }
-
-        $this->themeName = $themeName;
-        $this->themesPath = $themesPath;
+        (new ThemeInstaller($package, $themesPath, $publicPath))->install();
     }
 
-    /**
-     * Install theme
-     */
-    public function install()
-    {
-        $path = $this->themesPath . DIRECTORY_SEPARATOR . $this->themeName;
-    }
-
-    /**
-     * Uninstall theme
-     */
-    public function uninstall()
+    public static function uninstall(PackageEvent $event): void
     {
 
     }
