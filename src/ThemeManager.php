@@ -31,15 +31,42 @@ class ThemeManager
     public static function install(PackageEvent $event): void
     {
         $package = $event->getOperation()->getPackage();
+        print_r($package); exit;
+        if (!self::isThemePackage($package)) {
+            return;
+        }
+
         $themesPath = __DIR__ . DIRECTORY_SEPARATOR . self::THEMES_DIR;
-        var_dump($themesPath); exit;
-        $publicPath = '';
+        $publicPath = __DIR__ . DIRECTORY_SEPARATOR . self::THEMES_ASSETS_DIR;
 
         (new ThemeInstaller($package, $themesPath, $publicPath))->install();
     }
 
+    /**
+     * @param PackageEvent $event
+     * @throws Theme\ThemeException
+     */
     public static function uninstall(PackageEvent $event): void
     {
+        $package = $event->getOperation()->getPackage();
+        if (!self::isThemePackage($package)) {
+            return;
+        }
 
+        $themesPath = __DIR__ . DIRECTORY_SEPARATOR . self::THEMES_DIR;
+        $publicPath = __DIR__ . DIRECTORY_SEPARATOR . self::THEMES_ASSETS_DIR;
+
+        (new ThemeInstaller($package, $themesPath, $publicPath))->update();
+    }
+
+    /**
+     * Check if package is theme
+     *
+     * @param string $package
+     * @return bool
+     */
+    final public static function isThemePackage(string $package): bool
+    {
+        return preg_match('/-theme$/', $package) === 1;
     }
 }
