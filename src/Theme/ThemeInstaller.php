@@ -107,6 +107,7 @@ class ThemeInstaller
      */
     public function uninstall(): void
     {
+        $this->removeThemeDirectory($this->assetsPath . DIRECTORY_SEPARATOR . $this->themeName);
         $this->removeThemeDirectory($this->themePath);
     }
 
