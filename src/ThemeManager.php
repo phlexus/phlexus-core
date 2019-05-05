@@ -30,7 +30,7 @@ class ThemeManager
      */
     public static function install(PackageEvent $event): void
     {
-        $package = $event->getOperation()->getPackage();
+        $package = $event->getOperation()->getPackage()->getName();
         if (!self::isThemePackage($package)) {
             return;
         }
@@ -47,7 +47,7 @@ class ThemeManager
      */
     public static function uninstall(PackageEvent $event): void
     {
-        $package = $event->getOperation()->getPackage();
+        $package = $event->getOperation()->getPackage()->getName();
         if (!self::isThemePackage($package)) {
             return;
         }
