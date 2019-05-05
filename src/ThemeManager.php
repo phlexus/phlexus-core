@@ -37,8 +37,8 @@ class ThemeManager
             return;
         }
 
-        $themesPath = __DIR__ . DIRECTORY_SEPARATOR . self::THEMES_DIR;
-        $publicPath = __DIR__ . DIRECTORY_SEPARATOR . self::THEMES_ASSETS_DIR;
+        $themesPath = getcwd() . DIRECTORY_SEPARATOR . self::THEMES_DIR;
+        $publicPath = getcwd() . DIRECTORY_SEPARATOR . self::THEMES_ASSETS_DIR;
 
         (new ThemeInstaller($package, $themesPath, $publicPath))->install();
     }
@@ -56,8 +56,8 @@ class ThemeManager
             return;
         }
 
-        $themesPath = __DIR__ . DIRECTORY_SEPARATOR . self::THEMES_DIR;
-        $publicPath = __DIR__ . DIRECTORY_SEPARATOR . self::THEMES_ASSETS_DIR;
+        $themesPath = getcwd() . DIRECTORY_SEPARATOR . self::THEMES_DIR;
+        $publicPath = getcwd() . DIRECTORY_SEPARATOR . self::THEMES_ASSETS_DIR;
 
         (new ThemeInstaller($package, $themesPath, $publicPath))->install();
     }
@@ -75,8 +75,8 @@ class ThemeManager
             return;
         }
 
-        $themesPath = __DIR__ . DIRECTORY_SEPARATOR . self::THEMES_DIR;
-        $publicPath = __DIR__ . DIRECTORY_SEPARATOR . self::THEMES_ASSETS_DIR;
+        $themesPath = getcwd() . DIRECTORY_SEPARATOR . self::THEMES_DIR;
+        $publicPath = getcwd() . DIRECTORY_SEPARATOR . self::THEMES_ASSETS_DIR;
 
         (new ThemeInstaller($package, $themesPath, $publicPath))->uninstall();
     }
