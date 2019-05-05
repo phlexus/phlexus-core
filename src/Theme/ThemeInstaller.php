@@ -63,7 +63,7 @@ class ThemeInstaller
         }
 
         $this->themeName = $themeName;
-        $this->themePath = $this->themesPath . DIRECTORY_SEPARATOR . $this->themeName;
+        $this->themePath = $themesPath . DIRECTORY_SEPARATOR . $themeName;
         $this->themesPath = $themesPath;
         $this->assetsPath = $assetsPath;
     }
