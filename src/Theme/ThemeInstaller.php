@@ -83,21 +83,21 @@ class ThemeInstaller
         $directoryIterator = new RecursiveDirectoryIterator($themeAssets, RecursiveDirectoryIterator::SKIP_DOTS);
         $iterator = new RecursiveIteratorIterator($directoryIterator, RecursiveIteratorIterator::SELF_FIRST);
         foreach ($iterator as $asset) {
-            $dest = $publicAssets . DIRECTORY_SEPARATOR . $iterator->getSubPathName();
-            $exists = file_exists($dest);
+            $destination = $publicAssets . DIRECTORY_SEPARATOR . $iterator->getSubPathName();
+            $exists = file_exists($destination);
 
             if ($asset->isDir()) {
                 // Must be inside isDir() condition
                 if (!$exists) {
-                    mkdir($dest);
+                    mkdir($destination);
                 }
             } else {
                 // In case if file was updated
                 if ($exists) {
-                    unlink($dest);
+                    unlink($destination);
                 }
 
-                copy($asset->getPathName(), $dest);
+                copy($asset->getPathName(), $destination);
             }
         }
     }
