@@ -31,7 +31,6 @@ class ThemeManager
     public static function install(PackageEvent $event): void
     {
         $package = $event->getOperation()->getPackage();
-        print_r($package); exit;
         if (!self::isThemePackage($package)) {
             return;
         }
