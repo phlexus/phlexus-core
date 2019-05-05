@@ -25,6 +25,8 @@ class ThemeManager
     public const THEMES_ASSETS_DIR = 'public/assets/themes';
 
     /**
+     * Install Theme
+     *
      * @param PackageEvent $event
      * @throws Theme\ThemeException
      */
@@ -42,6 +44,27 @@ class ThemeManager
     }
 
     /**
+     * Update Theme
+     *
+     * @param PackageEvent $event
+     * @throws Theme\ThemeException
+     */
+    public static function update(PackageEvent $event): void
+    {
+        $package = $event->getOperation()->getInitialPackage()->getName();
+        if (!self::isThemePackage($package)) {
+            return;
+        }
+
+        $themesPath = __DIR__ . DIRECTORY_SEPARATOR . self::THEMES_DIR;
+        $publicPath = __DIR__ . DIRECTORY_SEPARATOR . self::THEMES_ASSETS_DIR;
+
+        (new ThemeInstaller($package, $themesPath, $publicPath))->install();
+    }
+
+    /**
+     * Uninstall Theme
+     *
      * @param PackageEvent $event
      * @throws Theme\ThemeException
      */
@@ -55,7 +78,7 @@ class ThemeManager
         $themesPath = __DIR__ . DIRECTORY_SEPARATOR . self::THEMES_DIR;
         $publicPath = __DIR__ . DIRECTORY_SEPARATOR . self::THEMES_ASSETS_DIR;
 
-        (new ThemeInstaller($package, $themesPath, $publicPath))->update();
+        (new ThemeInstaller($package, $themesPath, $publicPath))->uninstall();
     }
 
     /**
