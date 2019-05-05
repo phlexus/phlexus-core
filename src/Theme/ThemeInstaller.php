@@ -105,11 +105,22 @@ class ThemeInstaller
 
     /**
      * Uninstall theme
+     *
+     * There are checks if directories exists.
+     * Depending how it is removing: composer, UI, etc.
+     *
+     * @return void
      */
     public function uninstall(): void
     {
-        $this->removeDirectory($this->assetsPath . DIRECTORY_SEPARATOR . $this->themeName);
-        $this->removeDirectory($this->themePath);
+        $themeAssetsPath = $this->assetsPath . DIRECTORY_SEPARATOR . $this->themeName;
+        if (is_dir($themeAssetsPath)) {
+            $this->removeDirectory($themeAssetsPath);
+        }
+
+        if (is_dir($this->themePath)) {
+            $this->removeDirectory($this->themePath);
+        }
     }
 
     /**
