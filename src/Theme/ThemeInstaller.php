@@ -41,15 +41,16 @@ class ThemeInstaller
     public function __construct(string $themeName, string $themesPath, string $assetsPath)
     {
         if (!is_dir($themesPath)) {
-            throw new ThemeException('Themes directory do not exists');
+            throw new ThemeException('Themes directory do not exists: '. $themesPath);
         }
 
-        if (!is_dir($themesPath . DIRECTORY_SEPARATOR . $themeName)) {
-            throw new ThemeException('Theme directory do not exists');
+        $themePath = $themesPath . DIRECTORY_SEPARATOR . $themeName;
+        if (!is_dir($themePath)) {
+            throw new ThemeException('Theme directory do not exists: ' . $themePath);
         }
 
         if (!is_dir($assetsPath)) {
-            throw new ThemeException('Assets directory do not exists.');
+            throw new ThemeException('Assets directory do not exists: ' . $assetsPath);
         }
 
         $this->themeName = $themeName;
