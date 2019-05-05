@@ -1,6 +1,7 @@
 <?php declare(strict_types=1);
 
 namespace Phlexus\Theme;
+
 use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
 
@@ -50,7 +51,7 @@ class ThemeInstaller
     public function __construct(string $themeName, string $themesPath, string $assetsPath)
     {
         if (!is_dir($themesPath)) {
-            throw new ThemeException('Themes directory do not exists: '. $themesPath);
+            throw new ThemeException('Themes directory do not exists: ' . $themesPath);
         }
 
         $themePath = $themesPath . DIRECTORY_SEPARATOR . $themeName;
