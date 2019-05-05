@@ -1,6 +1,8 @@
 <?php declare(strict_types=1);
 
 namespace Phlexus\Theme;
+use RecursiveDirectoryIterator;
+use RecursiveIteratorIterator;
 
 /**
  * Class ThemeInstaller
@@ -15,6 +17,13 @@ class ThemeInstaller
      * @var string
      */
     protected $themeName;
+
+    /**
+     * Install Theme path
+     *
+     * @var string
+     */
+    protected $themePath;
 
     /**
      * Themes path
@@ -54,6 +63,7 @@ class ThemeInstaller
         }
 
         $this->themeName = $themeName;
+        $this->themePath = $this->themesPath . DIRECTORY_SEPARATOR . $this->themeName;
         $this->themesPath = $themesPath;
         $this->assetsPath = $assetsPath;
     }
@@ -61,16 +71,49 @@ class ThemeInstaller
     /**
      * Install theme
      */
-    public function install()
+    public function install(): void
     {
-        $path = $this->themesPath . DIRECTORY_SEPARATOR . $this->themeName;
+        $themeAssets = $this->themePath . DIRECTORY_SEPARATOR . 'assets';
+        $publicAssets = $this->assetsPath . DIRECTORY_SEPARATOR . $this->themeName;
+
+        if (!file_exists($publicAssets)) {
+            mkdir($publicAssets);
+        }
+
+        $iterator = new RecursiveDirectoryIterator($themeAssets, RecursiveDirectoryIterator::SKIP_DOTS);
+        $assets = new RecursiveIteratorIterator($iterator, RecursiveIteratorIterator::SELF_FIRST);
+        foreach ($assets as $asset) {
+            if ($asset->isDir()) {
+                mkdir($publicAssets . DIRECTORY_SEPARATOR . $iterator->getSubPathName());
+            } else {
+                copy($asset, $publicAssets . DIRECTORY_SEPARATOR . $iterator->getSubPathName());
+            }
+        }
     }
 
     /**
      * Uninstall theme
      */
-    public function uninstall()
+    public function uninstall(): void
     {
+        $this->removeThemeDirectory($this->themePath);
+    }
 
+    /**
+     * Remove theme directory
+     *
+     * Recursive removal of install theme directory
+     *
+     * @param string $path
+     * @return void
+     */
+    protected function removeThemeDirectory(string $path): void
+    {
+        $files = glob($path . DIRECTORY_SEPARATOR . '*');
+        foreach ($files as $file) {
+            is_dir($file) ? $this->removeThemeDirectory($file) : unlink($file);
+        }
+
+        rmdir($path);
     }
 }
