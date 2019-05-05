@@ -6,6 +6,11 @@ use LogicException;
 use Phalcon\DiInterface;
 use Phalcon\Plugin;
 
+/**
+ * Class AbstractProvider
+ *
+ * @package Phlexus\Providers
+ */
 abstract class AbstractProvider extends Plugin implements ProviderInterface
 {
     /**
@@ -15,6 +20,11 @@ abstract class AbstractProvider extends Plugin implements ProviderInterface
      */
     protected $providerName;
 
+    /**
+     * AbstractProvider constructor.
+     *
+     * @param DiInterface $di
+     */
     final public function __construct(DiInterface $di)
     {
         if (!$this->providerName) {
@@ -32,7 +42,7 @@ abstract class AbstractProvider extends Plugin implements ProviderInterface
      *
      * @return string
      */
-    public function getName() : string
+    public function getName(): string
     {
         return $this->providerName;
     }
@@ -40,7 +50,7 @@ abstract class AbstractProvider extends Plugin implements ProviderInterface
     /**
      * @return void
      */
-    public function boot()
+    public function boot(): void
     {
         // Implement in child class
     }
@@ -48,7 +58,7 @@ abstract class AbstractProvider extends Plugin implements ProviderInterface
     /**
      * @return void
      */
-    public function configure()
+    public function configure(): void
     {
         // Implement in child class
     }
