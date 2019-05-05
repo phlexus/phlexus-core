@@ -24,13 +24,21 @@ class ThemeInstaller
     protected $themesPath;
 
     /**
+     * Assets path
+     *
+     * @var string
+     */
+    protected $assetsPath;
+
+    /**
      * ThemeManager constructor.
      *
      * @param string $themeName
      * @param string $themesPath
+     * @param string $assetsPath
      * @throws ThemeException
      */
-    public function __construct(string $themeName, string $themesPath)
+    public function __construct(string $themeName, string $themesPath, string $assetsPath)
     {
         if (is_dir($themesPath)) {
             throw new ThemeException('Themes directory do not exists');
@@ -40,8 +48,13 @@ class ThemeInstaller
             throw new ThemeException('Theme directory do not exists');
         }
 
+        if (!is_dir($assetsPath)) {
+            throw new ThemeException('Assets directory do not exists.');
+        }
+
         $this->themeName = $themeName;
         $this->themesPath = $themesPath;
+        $this->assetsPath = $assetsPath;
     }
 
     /**
