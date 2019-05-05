@@ -107,8 +107,8 @@ class ThemeInstaller
      */
     public function uninstall(): void
     {
-        $this->removeThemeDirectory($this->assetsPath . DIRECTORY_SEPARATOR . $this->themeName);
-        $this->removeThemeDirectory($this->themePath);
+        $this->removeDirectory($this->assetsPath . DIRECTORY_SEPARATOR . $this->themeName);
+        $this->removeDirectory($this->themePath);
     }
 
     /**
@@ -119,11 +119,16 @@ class ThemeInstaller
      * @param string $path
      * @return void
      */
-    protected function removeThemeDirectory(string $path): void
+    protected function removeDirectory(string $path): void
     {
-        $files = glob($path . DIRECTORY_SEPARATOR . '*');
-        foreach ($files as $file) {
-            is_dir($file) ? $this->removeThemeDirectory($file) : unlink($file);
+        $directoryIterator = new RecursiveDirectoryIterator($path, RecursiveDirectoryIterator::SKIP_DOTS);
+        $iterator = new RecursiveIteratorIterator($directoryIterator, RecursiveIteratorIterator::CHILD_FIRST);
+        foreach ($iterator as $item) {
+            if ($item->isDir()) {
+                rmdir($item->getRealPath());
+            } else {
+                unlink($item->getRealPath());
+            }
         }
 
         rmdir($path);
