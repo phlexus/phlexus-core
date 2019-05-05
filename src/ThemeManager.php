@@ -37,10 +37,11 @@ class ThemeManager
             return;
         }
 
+        $themeName = self::parseThemeName($package);
         $themesPath = getcwd() . DIRECTORY_SEPARATOR . self::THEMES_DIR;
         $publicPath = getcwd() . DIRECTORY_SEPARATOR . self::THEMES_ASSETS_DIR;
 
-        (new ThemeInstaller($package, $themesPath, $publicPath))->install();
+        (new ThemeInstaller($themeName, $themesPath, $publicPath))->install();
     }
 
     /**
@@ -56,10 +57,11 @@ class ThemeManager
             return;
         }
 
+        $themeName = self::parseThemeName($package);
         $themesPath = getcwd() . DIRECTORY_SEPARATOR . self::THEMES_DIR;
         $publicPath = getcwd() . DIRECTORY_SEPARATOR . self::THEMES_ASSETS_DIR;
 
-        (new ThemeInstaller($package, $themesPath, $publicPath))->install();
+        (new ThemeInstaller($themeName, $themesPath, $publicPath))->install();
     }
 
     /**
@@ -75,10 +77,11 @@ class ThemeManager
             return;
         }
 
+        $themeName = self::parseThemeName($package);
         $themesPath = getcwd() . DIRECTORY_SEPARATOR . self::THEMES_DIR;
         $publicPath = getcwd() . DIRECTORY_SEPARATOR . self::THEMES_ASSETS_DIR;
 
-        (new ThemeInstaller($package, $themesPath, $publicPath))->uninstall();
+        (new ThemeInstaller($themeName, $themesPath, $publicPath))->uninstall();
     }
 
     /**
@@ -90,5 +93,16 @@ class ThemeManager
     final public static function isThemePackage(string $package): bool
     {
         return preg_match('/-theme$/', $package) === 1;
+    }
+
+    /**
+     * Parse Theme name from Package name
+     *
+     * @param string $packageName
+     * @return string
+     */
+    final public static function parseThemeName(string $packageName): string
+    {
+        return explode('/', $packageName)[1];
     }
 }
