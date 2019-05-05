@@ -80,13 +80,24 @@ class ThemeInstaller
             mkdir($publicAssets);
         }
 
-        $iterator = new RecursiveDirectoryIterator($themeAssets, RecursiveDirectoryIterator::SKIP_DOTS);
-        $assets = new RecursiveIteratorIterator($iterator, RecursiveIteratorIterator::SELF_FIRST);
-        foreach ($assets as $asset) {
+        $directoryIterator = new RecursiveDirectoryIterator($themeAssets, RecursiveDirectoryIterator::SKIP_DOTS);
+        $iterator = new RecursiveIteratorIterator($directoryIterator, RecursiveIteratorIterator::SELF_FIRST);
+        foreach ($iterator as $asset) {
+            $dest = $publicAssets . DIRECTORY_SEPARATOR . $iterator->getSubPathName();
+            $exists = file_exists($dest);
+
             if ($asset->isDir()) {
-                mkdir($publicAssets . DIRECTORY_SEPARATOR . $iterator->getSubPathName());
+                // Must be inside isDir() condition
+                if (!$exists) {
+                    mkdir($dest);
+                }
             } else {
-                copy($asset, $publicAssets . DIRECTORY_SEPARATOR . $iterator->getSubPathName());
+                // In case if file was updated
+                if ($exists) {
+                    unlink($dest);
+                }
+
+                copy($asset->getPathName(), $dest);
             }
         }
     }
