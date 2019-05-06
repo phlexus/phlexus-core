@@ -26,7 +26,8 @@ class RouterProvider extends AbstractProvider
             $router = new Router(false);
             $router->removeExtraSlashes(true);
 
-            foreach (phlexus_container('modules') as $module) {
+            $modules = phlexus_container('modules')->toArray();
+            foreach ($modules as $module) {
                 if (empty($module->router)) {
                     continue;
                 }
