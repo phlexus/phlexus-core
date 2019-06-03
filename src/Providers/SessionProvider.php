@@ -3,7 +3,7 @@
 namespace Phlexus\Providers;
 
 use Phalcon\Session\Manager;
-use Phalcon\Session\Adapter\Files;
+use Phalcon\Session\Adapter\Stream;
 
 class SessionProvider extends AbstractProvider
 {
@@ -24,7 +24,7 @@ class SessionProvider extends AbstractProvider
     {
         $this->di->setShared($this->providerName, function () {
             $session = new Manager();
-            $session->setHandler(new Files(['savePath' => '/tmp']));
+            $session->setHandler(new Stream(['savePath' => '/tmp']));
             $session->start();
 
             return $session;
