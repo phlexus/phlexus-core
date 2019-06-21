@@ -22,6 +22,7 @@ use Phlexus\Providers\ResponseProvider;
 use Phlexus\Providers\RouterProvider;
 use Phlexus\Providers\SessionProvider;
 use Phlexus\Providers\TagProvider;
+use Phlexus\Providers\UrlProvider;
 use Phlexus\Providers\ViewProvider;
 use Phlexus\Providers\VoltTemplateEngineProvider;
 
@@ -131,6 +132,7 @@ class Application
 
         // Init Mode Service Providers
         if ($mode == self::MODE_DEFAULT) {
+            $this->initializeProvider(new UrlProvider($this->di));
             $this->initializeProvider(new ViewProvider($this->di), $viewConfigs);
             $this->initializeProvider(new VoltTemplateEngineProvider($this->di), $viewConfigs);
         }
