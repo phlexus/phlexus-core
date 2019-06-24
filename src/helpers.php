@@ -40,3 +40,18 @@ if (!function_exists('phlexus_config')) {
         return call_user_func_array([$config, 'path'], $args);
     }
 }
+
+if (!function_exists('phlexus_model')) {
+    /**
+     * @param string $model
+     * @return mixed
+     */
+    function phlexus_model(string $model)
+    {
+        if (class_exists($model) && $model instanceof \Phalcon\Mvc\ModelInterface) {
+            return new $model;
+        }
+
+        return null;
+    }
+}
