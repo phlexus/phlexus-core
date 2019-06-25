@@ -20,6 +20,7 @@ use Phlexus\Providers\RegistryProvider;
 use Phlexus\Providers\RequestProvider;
 use Phlexus\Providers\ResponseProvider;
 use Phlexus\Providers\RouterProvider;
+use Phlexus\Providers\SecurityProvider;
 use Phlexus\Providers\SessionProvider;
 use Phlexus\Providers\TagProvider;
 use Phlexus\Providers\UrlProvider;
@@ -109,8 +110,9 @@ class Application
             'custom' => $configs['modules'] ?? [],
         ];
 
-        $viewConfigs = $configs['view'] ?? [];
+        $viewParams = $configs['view'] ?? [];
         $extraProviders = $configs['providers'] ?? [];
+        $securityParams = $configs['security'] ?? [];
 
         // Init Generic Service Providers
         $this->initializeProvider(new RegistryProvider($this->di));
@@ -126,6 +128,7 @@ class Application
         $this->initializeProvider(new TagProvider($this->di));
         $this->initializeProvider(new CookiesProvider($this->di));
         $this->initializeProvider(new SessionProvider($this->di));
+        $this->initializeProvider(new SecurityProvider($this->di), $securityParams);
 
         if (!empty($configs['db'])) {
             $this->initializeProvider(new DatabaseProvider($this->di), $configs['db']);
@@ -134,8 +137,8 @@ class Application
         // Init Mode Service Providers
         if ($mode == self::MODE_DEFAULT) {
             $this->initializeProvider(new UrlProvider($this->di));
-            $this->initializeProvider(new ViewProvider($this->di), $viewConfigs);
-            $this->initializeProvider(new VoltTemplateEngineProvider($this->di), $viewConfigs);
+            $this->initializeProvider(new ViewProvider($this->di), $viewParams);
+            $this->initializeProvider(new VoltTemplateEngineProvider($this->di), $viewParams);
         }
 
         $this->initializeProviders($extraProviders);
