@@ -204,7 +204,7 @@ class Application
             }
 
             /** @var ProviderInterface $class */
-            $class = new $provider;
+            $class = new $provider($this->di);
             if (!$class instanceof ProviderInterface) {
                 continue;
             }
