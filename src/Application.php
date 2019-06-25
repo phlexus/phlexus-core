@@ -110,6 +110,7 @@ class Application
         ];
 
         $viewConfigs = $configs['view'] ?? [];
+        $extraProviders = $configs['providers'] ?? [];
 
         // Init Generic Service Providers
         $this->initializeProvider(new RegistryProvider($this->di));
@@ -136,6 +137,8 @@ class Application
             $this->initializeProvider(new ViewProvider($this->di), $viewConfigs);
             $this->initializeProvider(new VoltTemplateEngineProvider($this->di), $viewConfigs);
         }
+
+        $this->initializeProviders($extraProviders);
 
         $this->app->setDI($this->di);
     }
@@ -173,7 +176,7 @@ class Application
     /**
      * Initialize the Service in the Dependency Injector Container.
      *
-     * @param  ProviderInterface $provider
+     * @param ProviderInterface $provider
      * @param array $parameters
      * @return $this
      */
@@ -185,6 +188,29 @@ class Application
         $this->providers[$provider->getName()] = $provider;
 
         return $this;
+    }
+
+    /**
+     * Initialize the Services in the Dependency Injector Container.
+     *
+     * @param array $providers
+     * @return void
+     */
+    protected function initializeProviders(array $providers = []): void
+    {
+        foreach ($providers as $provider) {
+            if (!class_exists($provider)) {
+                continue;
+            }
+
+            /** @var ProviderInterface $class */
+            $class = new $provider;
+            if (!$class instanceof ProviderInterface) {
+                continue;
+            }
+
+            $this->initializeProvider($class);
+        }
     }
 
     /**
