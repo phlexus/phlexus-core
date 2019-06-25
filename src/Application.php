@@ -12,6 +12,7 @@ use Phlexus\Providers\CookiesProvider;
 use Phlexus\Providers\DatabaseProvider;
 use Phlexus\Providers\DispatcherProvider;
 use Phlexus\Providers\EscaperProvider;
+use Phlexus\Providers\EventsManagerProvider;
 use Phlexus\Providers\ModelsManagerProvider;
 use Phlexus\Providers\ModelsMetadataProvider;
 use Phlexus\Providers\ModulesProvider;
@@ -117,6 +118,7 @@ class Application
         // Init Generic Service Providers
         $this->initializeProvider(new RegistryProvider($this->di));
         $this->initializeProvider(new ConfigProvider($this->di), $configs);
+        $this->initializeProvider(new EventsManagerProvider($this->di));
         $this->initializeProvider(new ModelsManagerProvider($this->di));
         $this->initializeProvider(new ModelsMetadataProvider($this->di));
         $this->initializeProvider(new ModulesProvider($this->di), $modules);
