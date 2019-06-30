@@ -24,6 +24,7 @@ class DispatcherProvider extends AbstractProvider
         $this->di->setShared($this->providerName, function() {
             $dispatcher = new Dispatcher();
             $dispatcher->setDI(phlexus_container());
+            $dispatcher->setEventsManager(phlexus_container('eventsManager'));
 
             return $dispatcher;
         });
