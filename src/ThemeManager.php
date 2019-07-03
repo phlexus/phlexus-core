@@ -47,6 +47,8 @@ class ThemeManager
     /**
      * Update Theme
      *
+     * In another words: uninstall and after install again
+     *
      * @param PackageEvent $event
      * @throws Theme\ThemeException
      */
@@ -61,6 +63,7 @@ class ThemeManager
         $themesPath = getcwd() . DIRECTORY_SEPARATOR . self::THEMES_DIR;
         $publicPath = getcwd() . DIRECTORY_SEPARATOR . self::THEMES_ASSETS_DIR;
 
+        (new ThemeInstaller($themeName, $themesPath, $publicPath))->uninstall();
         (new ThemeInstaller($themeName, $themesPath, $publicPath))->install();
     }
 
