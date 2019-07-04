@@ -21,6 +21,13 @@ class UrlProvider extends AbstractProvider
      */
     public function register(array $parameters = [])
     {
-        $this->di->setShared($this->providerName, Url::class);
+        $this->di->setShared($this->providerName, function () use ($parameters) {
+            $url = new Url();
+            if (isset($parameters['base_uri'])) {
+                $url->setBaseUri($parameters['base_uri']);
+            }
+
+            return $url;
+        });
     }
 }

@@ -114,6 +114,7 @@ class Application
         $viewParams = $configs['view'] ?? [];
         $extraProviders = $configs['providers'] ?? [];
         $securityParams = $configs['security'] ?? [];
+        $applicationParams = $configs['application'] ?? [];
 
         // Init Generic Service Providers
         $this->initializeProvider(new RegistryProvider($this->di));
@@ -138,7 +139,7 @@ class Application
 
         // Init Mode Service Providers
         if ($mode == self::MODE_DEFAULT) {
-            $this->initializeProvider(new UrlProvider($this->di));
+            $this->initializeProvider(new UrlProvider($this->di), $applicationParams);
             $this->initializeProvider(new ViewProvider($this->di), $viewParams);
             $this->initializeProvider(new VoltTemplateEngineProvider($this->di), $viewParams);
         }
