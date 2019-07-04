@@ -29,15 +29,18 @@ class DispatcherProvider extends AbstractProvider
      */
     public function register(array $parameters = [])
     {
-        $this->di->setShared($this->providerName, function() use ($parameters) {
-            $this->initializeGlobalEvents($parameters);
+        /** @var DispatcherProvider $provider */
+        $provider = $this;
+
+        $this->di->setShared($this->providerName, function() use ($parameters, $provider) {
+            $provider->initializeGlobalEvents($parameters);
 
             if (phlexus_container(Application::APP_CONTAINER_NAME)->getMode() === Application::MODE_CLI) {
                 $dispatcher = new CliDi();
-                $this->initializeCliEvents($parameters);
+                $provider->initializeCliEvents($parameters);
             } else {
                 $dispatcher = new MvcDi();
-                $this->initializeMvcEvents($parameters);
+                $provider->initializeMvcEvents($parameters);
             }
 
             $dispatcher->setDI(phlexus_container());
