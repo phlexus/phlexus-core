@@ -2,7 +2,7 @@
 
 namespace Phlexus\Providers;
 
-use Phalcon\Mvc\Url;
+use Phalcon\Url;
 
 class UrlProvider extends AbstractProvider
 {
