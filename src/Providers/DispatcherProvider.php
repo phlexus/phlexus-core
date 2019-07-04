@@ -2,8 +2,16 @@
 
 namespace Phlexus\Providers;
 
-use Phalcon\Mvc\Dispatcher;
+use Phalcon\Cli\Dispatcher as CliDi;
+use Phalcon\Mvc\Dispatcher as MvcDi;
+use Phlexus\Application;
+use Phlexus\Event\EventException;
 
+/**
+ * Class DispatcherProvider
+ *
+ * @package Phlexus\Providers
+ */
 class DispatcherProvider extends AbstractProvider
 {
     /**
@@ -21,12 +29,80 @@ class DispatcherProvider extends AbstractProvider
      */
     public function register(array $parameters = [])
     {
-        $this->di->setShared($this->providerName, function() {
-            $dispatcher = new Dispatcher();
+        $this->di->setShared($this->providerName, function() use ($parameters) {
+            $this->initializeGlobalEvents($parameters);
+
+            if (phlexus_container(Application::APP_CONTAINER_NAME)->getMode() === Application::MODE_CLI) {
+                $dispatcher = new CliDi();
+                $this->initializeCliEvents($parameters);
+            } else {
+                $dispatcher = new MvcDi();
+                $this->initializeMvcEvents($parameters);
+            }
+
             $dispatcher->setDI(phlexus_container());
             $dispatcher->setEventsManager(phlexus_container('eventsManager'));
 
             return $dispatcher;
         });
+    }
+
+    /**
+     * @param array $events
+     * @throws EventException
+     */
+    protected function initializeGlobalEvents(array $events): void
+    {
+        if (empty($events['global'])) {
+            return;
+        }
+
+        foreach ($events['global'] as $handler => $class) {
+            $this->initializeEvent($handler, $class);
+        }
+    }
+
+    /**
+     * @param array $events
+     * @throws EventException
+     */
+    protected function initializeMvcEvents(array $events): void
+    {
+        if (empty($events['mvc'])) {
+            return;
+        }
+
+        foreach ($events['mvc'] as $handler => $class) {
+            $this->initializeEvent($handler, $class);
+        }
+    }
+
+    /**
+     * @param array $events
+     * @throws EventException
+     */
+    protected function initializeCliEvents(array $events): void
+    {
+        if (empty($events['cli'])) {
+            return;
+        }
+
+        foreach ($events['cli'] as $handler => $class) {
+            $this->initializeEvent($handler, $class);
+        }
+    }
+
+    /**
+     * @param string $handler
+     * @param string $class
+     * @throws EventException
+     */
+    protected function initializeEvent(string $handler, string $class): void
+    {
+        if (!class_exists($class)) {
+            throw new EventException('Event class do not exists: ' . $class);
+        }
+
+        phlexus_container('eventsManager')->attach($handler, new $class($this));
     }
 }

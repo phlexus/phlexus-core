@@ -36,6 +36,11 @@ use Phlexus\Providers\VoltTemplateEngineProvider;
 class Application
 {
     /**
+     * Application Dependency Injection Container name
+     */
+    const APP_CONTAINER_NAME = 'bootstrap';
+
+    /**
      * Default MVC Mode
      *
      * Default behaviour of WEB Application
@@ -102,7 +107,7 @@ class Application
     ) {
         $this->di = new Di();
         $this->app = $this->createApplication($mode);
-        $this->di->setShared('bootstrap', $this);
+        $this->di->setShared(self::APP_CONTAINER_NAME, $this);
 
         Di::setDefault($this->di);
 
@@ -111,6 +116,7 @@ class Application
             'custom' => $configs['modules'] ?? [],
         ];
 
+        $events = $configs['events'] ?? [];
         $viewParams = $configs['view'] ?? [];
         $extraProviders = $configs['providers'] ?? [];
         $securityParams = $configs['security'] ?? [];
@@ -119,7 +125,7 @@ class Application
         // Init Generic Service Providers
         $this->initializeProvider(new RegistryProvider($this->di));
         $this->initializeProvider(new ConfigProvider($this->di), $configs);
-        $this->initializeProvider(new EventsManagerProvider($this->di));
+        $this->initializeProvider(new EventsManagerProvider($this->di), $events);
         $this->initializeProvider(new ModelsManagerProvider($this->di));
         $this->initializeProvider(new ModelsMetadataProvider($this->di));
         $this->initializeProvider(new ModulesProvider($this->di), $modules);
@@ -239,5 +245,15 @@ class Application
             default:
                 throw new InvalidArgumentException('Invalid application mode: ' . $mode);
         }
+    }
+
+    /**
+     * Get current Application mode
+     *
+     * @return string
+     */
+    protected function getMode(): string
+    {
+        return $this->mode;
     }
 }
