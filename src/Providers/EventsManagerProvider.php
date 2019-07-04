@@ -3,6 +3,7 @@
 namespace Phlexus\Providers;
 
 use Phalcon\Events\Manager;
+use Phlexus\Event\EventException;
 
 class EventsManagerProvider extends AbstractProvider
 {
@@ -16,14 +17,22 @@ class EventsManagerProvider extends AbstractProvider
     /**
      * Register application service.
      *
-     * @param array $parameters
+     * @param array $events
      * @return void
      */
-    public function register(array $parameters = [])
+    public function register(array $events = [])
     {
-        $this->di->setShared($this->providerName, function () {
+        $this->di->setShared($this->providerName, function () use ($events) {
             $manager = new Manager();
             $manager->enablePriorities(true);
+
+            foreach ($events as $handler => $class) {
+                if (!class_exists($class)) {
+                    throw new EventException('Event class do not exists: ' . $class);
+                }
+
+                $manager->attach($handler, new $class($this));
+            }
 
             return $manager;
         });
