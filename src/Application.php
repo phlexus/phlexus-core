@@ -186,6 +186,16 @@ class Application
     }
 
     /**
+     * Get current Application mode
+     *
+     * @return string
+     */
+    public function getMode(): string
+    {
+        return $this->mode;
+    }
+
+    /**
      * Initialize the Service in the Dependency Injector Container.
      *
      * @param ProviderInterface $provider
@@ -245,15 +255,5 @@ class Application
             default:
                 throw new InvalidArgumentException('Invalid application mode: ' . $mode);
         }
-    }
-
-    /**
-     * Get current Application mode
-     *
-     * @return string
-     */
-    protected function getMode(): string
-    {
-        return $this->mode;
     }
 }
