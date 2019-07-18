@@ -3,7 +3,7 @@
 namespace Phlexus\Providers;
 
 use LogicException;
-use Phalcon\DiInterface;
+use Phalcon\Di\DiInterface;
 use Phalcon\Plugin;
 
 /**
