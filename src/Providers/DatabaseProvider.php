@@ -2,7 +2,7 @@
 
 namespace Phlexus\Providers;
 
-use Phalcon\Db\Adapter\Pdo\Factory;
+use Phalcon\Db\Adapter\PdoFactory;
 
 class DatabaseProvider extends AbstractProvider
 {
@@ -22,7 +22,7 @@ class DatabaseProvider extends AbstractProvider
     public function register(array $parameters = [])
     {
         $this->di->setShared($this->providerName, function () use ($parameters) {
-            return Factory::load($parameters);
+            return PdoFactory::load($parameters);
         });
     }
 }
