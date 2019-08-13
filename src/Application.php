@@ -5,7 +5,7 @@ namespace Phlexus;
 use InvalidArgumentException;
 use Phalcon\Cli\Console;
 use Phalcon\Di;
-use Phalcon\DiInterface;
+use Phalcon\Di\DiInterface;
 use Phalcon\Mvc\Application as MvcApplication;
 use Phlexus\Providers\ConfigProvider;
 use Phlexus\Providers\CookiesProvider;
