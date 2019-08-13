@@ -5,7 +5,7 @@ if (!function_exists('phlexus_container')) {
      * Calls the default Dependency Injection container.
      *
      * @param  mixed
-     * @return mixed|\Phalcon\DiInterface
+     * @return \Phalcon\Di\DiInterface
      */
     function phlexus_container()
     {
@@ -14,6 +14,7 @@ if (!function_exists('phlexus_container')) {
         if (empty($args)) {
             return $default;
         }
+
         return call_user_func_array([$default, 'get'], $args);
     }
 }
