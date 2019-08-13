@@ -56,3 +56,14 @@ if (!function_exists('phlexus_model')) {
         return null;
     }
 }
+
+if (!function_exists('phlexus_themes_path')) {
+    /**
+     * @param string $config
+     * @return string|null
+     */
+    function phlexus_themes_path(string $config = 'theme.themes_dir')
+    {
+        return phlexus_config($config);
+    }
+}
