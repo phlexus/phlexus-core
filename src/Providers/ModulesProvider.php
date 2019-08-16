@@ -64,7 +64,7 @@ class ModulesProvider extends AbstractProvider
             $modules[$moduleName] = [
                 'className' => $className,
                 'path' => $path[0] . DIRECTORY_SEPARATOR . 'Module.php',
-                'router' => $path[0] . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'routes.php',
+                'router' => $path[0] . DIRECTORY_SEPARATOR . 'Config' . DIRECTORY_SEPARATOR . 'routes.php',
             ];
 
             $this->di->setShared($className, $modules[$moduleName]);
