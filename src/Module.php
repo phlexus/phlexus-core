@@ -2,7 +2,7 @@
 
 namespace Phlexus;
 
-use Phalcon\DiInterface;
+use Phalcon\Di\DiInterface;
 use Phalcon\Events\Manager;
 use Phalcon\Events\ManagerInterface;
 use Phlexus\Module\ModuleInterface;
