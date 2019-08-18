@@ -10,4 +10,6 @@ interface ModuleInterface extends ModuleDefinitionInterface, EventsAwareInterfac
     public function initialize();
 
     public function getHandlersNamespace();
+
+    public static function getModuleName(): string;
 }

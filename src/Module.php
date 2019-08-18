@@ -52,7 +52,7 @@ abstract class Module implements ModuleInterface
      *
      * @return ManagerInterface
      */
-    public function getEventsManager() : ManagerInterface
+    public function getEventsManager(): ManagerInterface
     {
         $manager = $this->eventsManager;
         if ($manager instanceof ManagerInterface) {
@@ -67,6 +67,7 @@ abstract class Module implements ModuleInterface
         }
 
         $this->setEventsManager($manager);
+
         return $manager;
     }
 
@@ -79,6 +80,17 @@ abstract class Module implements ModuleInterface
     public function setEventsManager(ManagerInterface $eventsManager)
     {
         $this->eventsManager = $eventsManager;
+
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public static function getModuleName(): string
+    {
+        $namespaceParts = explode('\\', __NAMESPACE__);
+
+        return end($namespaceParts);
     }
 }
