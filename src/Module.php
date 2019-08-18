@@ -83,14 +83,4 @@ abstract class Module implements ModuleInterface
 
         return $this;
     }
-
-    /**
-     * @return string
-     */
-    public static function getModuleName(): string
-    {
-        $namespaceParts = explode('\\', __NAMESPACE__);
-
-        return end($namespaceParts);
-    }
 }
