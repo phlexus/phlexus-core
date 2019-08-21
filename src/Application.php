@@ -202,7 +202,7 @@ class Application
      * @param array $parameters
      * @return $this
      */
-    protected function initializeProvider(ProviderInterface $provider, array $parameters = []) : Application
+    public function initializeProvider(ProviderInterface $provider, array $parameters = []) : Application
     {
         $provider->register($parameters);
         $provider->boot();
@@ -218,7 +218,7 @@ class Application
      * @param array $providers
      * @return void
      */
-    protected function initializeProviders(array $providers = []): void
+    public function initializeProviders(array $providers = []): void
     {
         foreach ($providers as $provider) {
             if (!class_exists($provider)) {
