@@ -1,6 +1,7 @@
 {
     "name": "phlexus/phlexus-core",
     "description": "Phlexus - Content Management System based on Phalcon PHP Framework",
+    "license": "BSD-3-Clause",
     "keywords": [
         "phlexus",
         "cms",
