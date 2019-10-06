@@ -5,14 +5,14 @@ namespace Phlexus\Providers;
 
 use LogicException;
 use Phalcon\Di\DiInterface;
-use Phalcon\Plugin;
+use Phalcon\Di\Injectable;
 
 /**
  * Class AbstractProvider
  *
  * @package Phlexus\Providers
  */
-abstract class AbstractProvider extends Plugin implements ProviderInterface
+abstract class AbstractProvider extends Injectable implements ProviderInterface
 {
     /**
      * Provider name
