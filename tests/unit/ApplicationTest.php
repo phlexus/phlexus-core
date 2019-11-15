@@ -7,11 +7,6 @@ use Phalcon\Mvc\Application as MvcApplication;
 use Phlexus\Application;
 use Tests\TestCase;
 
-/**
- * Class ApplicationTest
- *
- * @package Tests\Unit
- */
 final class ApplicationTest extends TestCase
 {
     /**
