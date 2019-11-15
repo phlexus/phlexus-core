@@ -5,11 +5,6 @@ namespace Tests;
 
 use Phlexus\Application;
 
-/**
- * Trait ApplicationTest
- *
- * @package Tests
- */
 trait ApplicationTest
 {
     /**
