@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Phlexus\Providers;
 
-use Phalcon\Mvc\Model\Metadata\Memory as Memory;
+use Phalcon\Mvc\Model\Metadata\Memory as MemoryMetadata;
 
 class ModelsMetadataProvider extends AbstractProvider
 {
@@ -22,7 +22,7 @@ class ModelsMetadataProvider extends AbstractProvider
     public function register(array $parameters = [])
     {
         $this->di->setShared($this->providerName, function () {
-            return new Memory();
+            return new MemoryMetadata();
         });
     }
 }
