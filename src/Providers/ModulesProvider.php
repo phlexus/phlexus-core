@@ -1,4 +1,14 @@
 <?php
+
+/**
+ * This file is part of the Phlexus CMS.
+ *
+ * (c) Phlexus CMS <cms@phlexus.io>
+ *
+ * For the full copyright and license information, please view
+ * the LICENSE file that was distributed with this source code.
+ */
+
 declare(strict_types=1);
 
 namespace Phlexus\Providers;
@@ -10,7 +20,7 @@ class ModulesProvider extends AbstractProvider
     /**
      * Constant to find match in composer vendor packages
      */
-    const PHLEXUS_NAMESPACE_PATTERN = 'Phlexus\Modules\\';
+    public const PHLEXUS_NAMESPACE_PATTERN = 'Phlexus\Modules\\';
 
     /**
      * Provider name
@@ -49,7 +59,7 @@ class ModulesProvider extends AbstractProvider
      * @param array $vendorModules
      * @return array
      */
-    protected function prepareVendorModules(array $vendorModules = []) : array
+    protected function prepareVendorModules(array $vendorModules = []): array
     {
         $modules = [];
         foreach ($vendorModules as $namespace => $path) {
@@ -77,7 +87,7 @@ class ModulesProvider extends AbstractProvider
      * @param array $customModules
      * @return array
      */
-    protected function prepareCustomModules(array $customModules = []) : array
+    protected function prepareCustomModules(array $customModules = []): array
     {
         return $customModules;
     }

@@ -1,4 +1,14 @@
 <?php
+
+/**
+ * This file is part of the Phlexus CMS.
+ *
+ * (c) Phlexus CMS <cms@phlexus.io>
+ *
+ * For the full copyright and license information, please view
+ * the LICENSE file that was distributed with this source code.
+ */
+
 declare(strict_types=1);
 
 namespace Phlexus;
@@ -39,21 +49,21 @@ class Application
     /**
      * Application Dependency Injection Container name
      */
-    const APP_CONTAINER_NAME = 'bootstrap';
+    public const APP_CONTAINER_NAME = 'bootstrap';
 
     /**
      * Default MVC Mode
      *
      * Default behaviour of WEB Application
      */
-    const MODE_DEFAULT = 'default';
+    public const MODE_DEFAULT = 'default';
 
     /**
      * Console Mode
      *
      * Used for tasks and cron jobs
      */
-    const MODE_CLI = 'cli';
+    public const MODE_CLI = 'cli';
 
     /**
      * MC Mode
@@ -62,7 +72,7 @@ class Application
      * Controllers always returns array which is
      * transformed into JSON and send to client.
      */
-    const MODE_API = 'api';
+    public const MODE_API = 'api';
 
     /**
      * The Dependency Injector
@@ -198,7 +208,7 @@ class Application
      *
      * @return string
      */
-    public function run() : string
+    public function run(): string
     {
         return $this->getOutput();
     }
@@ -208,7 +218,7 @@ class Application
      *
      * @return string
      */
-    public function getOutput() : string
+    public function getOutput(): string
     {
         return $this->app->handle($_SERVER['REQUEST_URI'])->getContent();
     }
@@ -240,7 +250,7 @@ class Application
      * @param array $parameters
      * @return $this
      */
-    public function initializeProvider(ProviderInterface $provider, array $parameters = []) : Application
+    public function initializeProvider(ProviderInterface $provider, array $parameters = []): Application
     {
         $provider->register($parameters);
 
