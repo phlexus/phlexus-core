@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Phlexus;
 
 use InvalidArgumentException;
-use Phalcon\Cli\Console;
+use Phalcon\Cli\Console as CliApplication;
 use Phalcon\Di;
 use Phalcon\Di\DiInterface;
 use Phalcon\Mvc\Application as MvcApplication;
@@ -79,6 +79,13 @@ class Application
     protected $app;
 
     /**
+     * Root path of project
+     *
+     * @var string
+     */
+    protected $rootPath;
+
+    /**
      * Application mode
      *
      * Possible values: default and cli
@@ -97,17 +104,20 @@ class Application
     /**
      * Application constructor
      *
+     * @param string $rootPath
      * @param string $mode
      * @param array $configs
      * @param array $vendorModules
      */
     public function __construct(
+        string $rootPath,
         string $mode = self::MODE_DEFAULT,
         array $configs = [],
         array $vendorModules = []
     ) {
         $this->di = new Di();
         $this->app = $this->createApplication($mode);
+        $this->setRootPath($rootPath);
         $this->di->setShared(self::APP_CONTAINER_NAME, $this);
 
         Di::setDefault($this->di);
@@ -157,6 +167,33 @@ class Application
     }
 
     /**
+     * Set Root Path of Project
+     *
+     * @param string $path
+     * @return Application
+     */
+    public function setRootPath(string $path): Application
+    {
+        $this->rootPath = $path;
+
+        $this->di->offsetSet('rootPath', function () use ($path) {
+            return $path;
+        });
+
+        return $this;
+    }
+
+    /**
+     * Get Root Path of Project
+     *
+     * @return string
+     */
+    public function getRootPath(): string
+    {
+        return $this->rootPath;
+    }
+
+    /**
      * Run!
      *
      * @return string
@@ -179,9 +216,9 @@ class Application
     /**
      * Get current Application instance
      *
-     * @return MvcApplication
+     * @return MvcApplication|CliApplication
      */
-    public function getApplication() : MvcApplication
+    public function getApplication()
     {
         return $this->app;
     }
@@ -239,7 +276,7 @@ class Application
      * Create Internal Application
      *
      * @param string $mode
-     * @return Console|MvcApplication
+     * @return CliApplication|MvcApplication
      * @throws InvalidArgumentException
      */
     protected function createApplication(string $mode)
@@ -251,7 +288,7 @@ class Application
             case self::MODE_API:
                 return new MvcApplication($this->di);
             case self::MODE_CLI:
-                return new Console($this->di);
+                return new CliApplication($this->di);
             default:
                 throw new InvalidArgumentException('Invalid application mode: ' . $mode);
         }

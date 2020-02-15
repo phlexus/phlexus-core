@@ -6,7 +6,7 @@ namespace Tests;
 use Phlexus\Application;
 use PHPUnit\Framework\TestCase as PHPUnitTestCase;
 
-abstract class TestCase extends PHPUnitTestCase
+abstract class IntegrationTestCase extends PHPUnitTestCase
 {
     use ApplicationTest;
 

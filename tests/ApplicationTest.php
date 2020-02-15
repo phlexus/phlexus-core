@@ -17,6 +17,6 @@ trait ApplicationTest
      */
     public function createApplication() : Application
     {
-        return new Application();
+        return new Application('');
     }
 }
