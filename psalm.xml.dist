@@ -8,7 +8,6 @@
 >
     <projectFiles>
         <directory name="src/" />
-        <file name="phalcon-migrations" />
         <ignoreFiles>
             <directory name="vendor" />
         </ignoreFiles>
