@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace Phlexus\Providers;
 
 use Phalcon\Registry;
+use Phlexus\Application;
 
 class ModulesProvider extends AbstractProvider
 {
@@ -41,8 +42,9 @@ class ModulesProvider extends AbstractProvider
         $customModules = $this->prepareCustomModules($rawModules['custom']);
         $modules = array_merge($vendorModules, $customModules);
 
-        phlexus_container('bootstrap')
-            ->getApplication()
+        /** @var Application $app */
+        $app = phlexus_container('bootstrap');
+        $app->getApplication()
             ->registerModules($modules);
 
         $this->di->setShared($this->providerName, function () use ($modules) {

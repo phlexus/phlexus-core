@@ -20,6 +20,11 @@ use Phalcon\Di\Injectable;
 abstract class AbstractProvider extends Injectable implements ProviderInterface
 {
     /**
+     * @var DiInterface
+     */
+    protected $di;
+
+    /**
      * Provider name
      *
      * @var string

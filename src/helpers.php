@@ -60,7 +60,7 @@ if (!function_exists('phlexus_model')) {
      */
     function phlexus_model(string $model)
     {
-        if (class_exists($model) && $model instanceof \Phalcon\Mvc\ModelInterface) {
+        if (class_exists($model)) {
             /**
              * @psalm-suppress UndefinedClass
              */

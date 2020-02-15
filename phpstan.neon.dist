@@ -4,4 +4,8 @@ parameters:
     ignoreErrors:
         - '#Parameter \#1 \$eventsManager of method Phalcon#'
         - '#setEventsManager\(Phalcon\\Events\\ManagerInterface \$eventsManager\)#'
+        - '#PHPDoc tag @param has invalid value \(mixed\)#'
+        - '#Function phlexus_config invoked with 1 parameter, 0 required.#'
+        - '#Function phlexus_container invoked with 1 parameter, 0 required.#'
+        - '#Call to an undefined method Phalcon\\Session\\Manager::setAdapter\(\)#'
     reportUnmatchedIgnoredErrors: false

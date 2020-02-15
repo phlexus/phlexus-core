@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Phlexus\Providers;
 
+use Phalcon\Config;
 use Phalcon\Mvc\Router;
 use Phalcon\Mvc\Router\GroupInterface;
 
@@ -37,7 +38,9 @@ class RouterProvider extends AbstractProvider
             $router = new Router(false);
             $router->removeExtraSlashes(true);
 
-            $modules = phlexus_container('modules')->toArray();
+            /** @var Config $modules */
+            $modules = phlexus_container('modules');
+            $modules = $modules->toArray();
             foreach ($modules as $module) {
                 if (empty($module->router)) {
                     continue;

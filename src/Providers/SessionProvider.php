@@ -28,6 +28,8 @@ class SessionProvider extends AbstractProvider
     /**
      * Register application service.
      *
+     * @psalm-suppress UndefinedMethod
+     *
      * @param array $parameters Custom parameters for Service Provider
      * @return void
      */

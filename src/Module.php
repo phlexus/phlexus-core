@@ -33,7 +33,7 @@ abstract class Module implements ModuleInterface
     protected $di;
 
     /**
-     * @var Manager
+     * @var ManagerInterface|null
      */
     protected $eventsManager;
 

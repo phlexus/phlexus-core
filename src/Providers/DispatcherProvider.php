@@ -35,7 +35,10 @@ class DispatcherProvider extends AbstractProvider
     public function register(array $parameters = [])
     {
         $this->di->setShared($this->providerName, function () {
-            if (phlexus_container(Application::APP_CONTAINER_NAME)->getMode() === Application::MODE_CLI) {
+            /** @var Application $app */
+            $app = phlexus_container(Application::APP_CONTAINER_NAME);
+
+            if ($app->getMode() === Application::MODE_CLI) {
                 $dispatcher = new CliDi();
             } else {
                 $dispatcher = new MvcDi();
