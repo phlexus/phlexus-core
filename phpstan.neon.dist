@@ -3,4 +3,5 @@ parameters:
 
     ignoreErrors:
         - '#Parameter \#1 \$eventsManager of method Phalcon#'
+        - '#setEventsManager\(Phalcon\\Events\\ManagerInterface \$eventsManager\)#'
     reportUnmatchedIgnoredErrors: false
