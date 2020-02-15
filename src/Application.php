@@ -206,7 +206,6 @@ class Application
     public function initializeProvider(ProviderInterface $provider, array $parameters = []) : Application
     {
         $provider->register($parameters);
-        $provider->boot();
 
         $this->providers[$provider->getName()] = $provider;
 

@@ -7,11 +7,6 @@ use Phalcon\Cli\Dispatcher as CliDi;
 use Phalcon\Mvc\Dispatcher as MvcDi;
 use Phlexus\Application;
 
-/**
- * Class DispatcherProvider
- *
- * @package Phlexus\Providers
- */
 class DispatcherProvider extends AbstractProvider
 {
     /**

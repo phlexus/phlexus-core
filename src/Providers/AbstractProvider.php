@@ -35,7 +35,6 @@ abstract class AbstractProvider extends Injectable implements ProviderInterface
         }
 
         $this->setDI($di);
-        $this->configure();
     }
 
     /**
@@ -46,21 +45,5 @@ abstract class AbstractProvider extends Injectable implements ProviderInterface
     public function getName(): string
     {
         return $this->providerName;
-    }
-
-    /**
-     * @return void
-     */
-    public function boot(): void
-    {
-        // Implement in child class
-    }
-
-    /**
-     * @return void
-     */
-    public function configure(): void
-    {
-        // Implement in child class
     }
 }

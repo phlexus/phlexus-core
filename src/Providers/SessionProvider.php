@@ -25,7 +25,7 @@ class SessionProvider extends AbstractProvider
     {
         $this->di->setShared($this->providerName, function () {
             $session = new Manager();
-            $session->setHandler(new Stream(['savePath' => '/tmp']));
+            $session->setAdapter(new Stream(['savePath' => '/tmp']));
             $session->start();
 
             return $session;

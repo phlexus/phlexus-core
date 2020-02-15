@@ -5,11 +5,6 @@ namespace Phlexus\Providers;
 
 use Phalcon\Http\Request;
 
-/**
- * Class RequestProvider
- *
- * @package Phlexus\Providers
- */
 class RequestProvider extends AbstractProvider
 {
     /**

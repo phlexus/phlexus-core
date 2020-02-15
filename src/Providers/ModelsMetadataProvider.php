@@ -15,8 +15,9 @@ class ModelsMetadataProvider extends AbstractProvider
     protected $providerName = 'modelsMetadata';
 
     /**
-     * {@inheritdoc}
+     * Register application provider
      *
+     * @param array $parameters
      * @return void
      */
     public function register(array $parameters = [])

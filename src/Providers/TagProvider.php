@@ -5,11 +5,6 @@ namespace Phlexus\Providers;
 
 use Phalcon\Tag;
 
-/**
- * Class TagProvider
- *
- * @package Phlexus\Providers
- */
 class TagProvider extends AbstractProvider
 {
     /**
