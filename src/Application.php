@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Phlexus;
 
 use InvalidArgumentException;
-use Phalcon\Cli\Console;
+use Phalcon\Cli\Console as CliApplication;
 use Phalcon\Di;
 use Phalcon\Di\DiInterface;
 use Phalcon\Mvc\Application as MvcApplication;
@@ -216,9 +216,9 @@ class Application
     /**
      * Get current Application instance
      *
-     * @return MvcApplication
+     * @return MvcApplication|CliApplication
      */
-    public function getApplication() : MvcApplication
+    public function getApplication()
     {
         return $this->app;
     }
