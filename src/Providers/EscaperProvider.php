@@ -5,11 +5,6 @@ namespace Phlexus\Providers;
 
 use Phalcon\Escaper;
 
-/**
- * Class EscaperProvider
- *
- * @package Phlexus\Providers
- */
 class EscaperProvider extends AbstractProvider
 {
     /**

@@ -16,20 +16,6 @@ interface ProviderInterface extends InjectionAwareInterface
     public function register(array $parameters = []);
 
     /**
-     * Package boot method.
-     *
-     * @return void
-     */
-    public function boot();
-
-    /**
-     * Configures the current service provider.
-     *
-     * @return void
-     */
-    public function configure();
-
-    /**
      * Get the Service name.
      *
      * @return string

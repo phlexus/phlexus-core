@@ -17,7 +17,7 @@
     stopOnRisky="false">
     <testsuites>
         <testsuite name="unit">
-            <directory>./tests/unit</directory>
+            <directory>./tests/Unit</directory>
         </testsuite>
     </testsuites>
 </phpunit>
