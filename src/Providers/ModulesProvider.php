@@ -47,7 +47,7 @@ class ModulesProvider extends AbstractProvider
         $app->getApplication()
             ->registerModules($modules);
 
-        $this->di->setShared($this->providerName, function () use ($modules) {
+        $this->getDI()->setShared($this->providerName, function () use ($modules) {
             $registry = new Registry();
             foreach ($modules as $name => $module) {
                 $registry->offsetSet($name, (object)$module);
@@ -79,7 +79,7 @@ class ModulesProvider extends AbstractProvider
                 'router' => $path[0] . DIRECTORY_SEPARATOR . 'Config' . DIRECTORY_SEPARATOR . 'routes.php',
             ];
 
-            $this->di->setShared($className, $modules[$moduleName]);
+            $this->getDI()->setShared($className, $modules[$moduleName]);
         }
 
         return $modules;

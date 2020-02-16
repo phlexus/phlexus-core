@@ -32,6 +32,6 @@ class EscaperProvider extends AbstractProvider
      */
     public function register(array $parameters = [])
     {
-        $this->di->setShared($this->providerName, Escaper::class);
+        $this->getDI()->setShared($this->providerName, Escaper::class);
     }
 }

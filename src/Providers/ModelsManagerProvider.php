@@ -32,7 +32,7 @@ class ModelsManagerProvider extends AbstractProvider
      */
     public function register(array $parameters = [])
     {
-        $this->di->setShared($this->providerName, function () {
+        $this->getDI()->setShared($this->providerName, function () {
             /** @var \Phalcon\Di\DiInterface $this */
             $modelsManager = new Manager();
             //$modelsManager->setEventsManager($this->getShared('eventsManager'));

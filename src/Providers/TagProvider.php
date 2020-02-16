@@ -32,6 +32,6 @@ class TagProvider extends AbstractProvider
      */
     public function register(array $parameters = [])
     {
-        $this->di->setShared($this->providerName, Tag::class);
+        $this->getDI()->setShared($this->providerName, Tag::class);
     }
 }

@@ -32,6 +32,6 @@ class RequestProvider extends AbstractProvider
      */
     public function register(array $parameters = [])
     {
-        $this->di->setShared($this->providerName, Request::class);
+        $this->getDI()->setShared($this->providerName, Request::class);
     }
 }

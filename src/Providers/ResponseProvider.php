@@ -32,6 +32,6 @@ class ResponseProvider extends AbstractProvider
      */
     public function register(array $parameters = [])
     {
-        $this->di->setShared($this->providerName, Response::class);
+        $this->getDI()->setShared($this->providerName, Response::class);
     }
 }

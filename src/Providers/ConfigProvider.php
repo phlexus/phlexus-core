@@ -32,7 +32,7 @@ class ConfigProvider extends AbstractProvider
      */
     public function register(array $parameters = [])
     {
-        $this->di->setShared($this->providerName, function () use ($parameters) {
+        $this->getDI()->setShared($this->providerName, function () use ($parameters) {
             return new Config($parameters);
         });
     }

@@ -34,7 +34,7 @@ class DispatcherProvider extends AbstractProvider
      */
     public function register(array $parameters = [])
     {
-        $this->di->setShared($this->providerName, function () {
+        $this->getDI()->setShared($this->providerName, function () {
             /** @var Application $app */
             $app = phlexus_container(Application::APP_CONTAINER_NAME);
 

@@ -42,7 +42,7 @@ class SecurityProvider extends AbstractProvider
      */
     public function register(array $parameters = [])
     {
-        $this->di->setShared($this->providerName, function () use ($parameters) {
+        $this->getDI()->setShared($this->providerName, function () use ($parameters) {
             $workFactor = $parameters[self::WORK_FACTOR_PARAM_KEY] ?? self::DEFAULT_WORK_FACTOR;
 
             $security = new Security();

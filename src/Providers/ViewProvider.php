@@ -32,7 +32,7 @@ class ViewProvider extends AbstractProvider
      */
     public function register(array $parameters = []): void
     {
-        $this->di->setShared($this->providerName, function () use ($parameters) {
+        $this->getDI()->setShared($this->providerName, function () use ($parameters) {
             $view = new View();
 
             if (!empty($parameters['engines'])) {

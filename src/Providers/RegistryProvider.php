@@ -32,7 +32,7 @@ class RegistryProvider extends AbstractProvider
      */
     public function register(array $parameters = [])
     {
-        $this->di->setShared($this->providerName, function () {
+        $this->getDI()->setShared($this->providerName, function () {
             return new Registry();
         });
     }

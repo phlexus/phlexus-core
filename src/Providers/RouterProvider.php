@@ -34,7 +34,7 @@ class RouterProvider extends AbstractProvider
      */
     public function register(array $parameters = [])
     {
-        $this->di->setShared($this->providerName, function () {
+        $this->getDI()->setShared($this->providerName, function () {
             $router = new Router(false);
             $router->removeExtraSlashes(true);
 

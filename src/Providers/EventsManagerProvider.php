@@ -33,7 +33,7 @@ class EventsManagerProvider extends AbstractProvider
      */
     public function register(array $events = [])
     {
-        $this->di->setShared($this->providerName, function () use ($events) {
+        $this->getDI()->setShared($this->providerName, function () use ($events) {
             $manager = new Manager();
             $manager->enablePriorities(true);
 
