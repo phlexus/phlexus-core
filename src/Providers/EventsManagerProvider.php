@@ -29,9 +29,8 @@ class EventsManagerProvider extends AbstractProvider
      * Register application service.
      *
      * @param array $events
-     * @return void
      */
-    public function register(array $events = [])
+    public function register(array $events = []): void
     {
         $this->getDI()->setShared($this->providerName, function () use ($events) {
             $manager = new Manager();

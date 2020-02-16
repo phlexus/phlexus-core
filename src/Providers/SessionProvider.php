@@ -31,9 +31,8 @@ class SessionProvider extends AbstractProvider
      * @psalm-suppress UndefinedMethod
      *
      * @param array $parameters Custom parameters for Service Provider
-     * @return void
      */
-    public function register(array $parameters = [])
+    public function register(array $parameters = []): void
     {
         $this->getDI()->setShared($this->providerName, function () {
             $session = new Manager();

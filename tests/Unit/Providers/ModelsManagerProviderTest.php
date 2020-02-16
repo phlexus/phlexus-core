@@ -14,7 +14,7 @@ final class ModelsManagerProviderTest extends TestCase
     /**
      * @test
      */
-    public function implementation()
+    public function implementation(): void
     {
         $class = $this->createMock(ModelsManagerProvider::class);
 

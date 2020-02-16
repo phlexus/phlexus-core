@@ -28,9 +28,8 @@ class UrlProvider extends AbstractProvider
      * Register application service.
      *
      * @param array $parameters
-     * @return void
      */
-    public function register(array $parameters = [])
+    public function register(array $parameters = []): void
     {
         $this->getDI()->setShared($this->providerName, function () use ($parameters) {
             $url = new Url();

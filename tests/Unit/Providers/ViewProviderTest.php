@@ -14,7 +14,7 @@ final class ViewProviderTest extends TestCase
     /**
      * @test
      */
-    public function implementation()
+    public function implementation(): void
     {
         $class = $this->createMock(ViewProvider::class);
 

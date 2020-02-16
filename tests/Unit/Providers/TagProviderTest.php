@@ -14,7 +14,7 @@ final class TagProviderTest extends TestCase
     /**
      * @test
      */
-    public function implementation()
+    public function implementation(): void
     {
         $class = $this->createMock(TagProvider::class);
 

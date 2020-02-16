@@ -14,7 +14,7 @@ final class SecurityProviderTest extends TestCase
     /**
      * @test
      */
-    public function implementation()
+    public function implementation(): void
     {
         $class = $this->createMock(SecurityProvider::class);
 

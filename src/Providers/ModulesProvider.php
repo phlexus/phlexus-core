@@ -34,9 +34,8 @@ class ModulesProvider extends AbstractProvider
      * Register application provider
      *
      * @param array $rawModules
-     * @return void
      */
-    public function register(array $rawModules = [])
+    public function register(array $rawModules = []): void
     {
         $vendorModules = $this->prepareVendorModules($rawModules['vendor']);
         $customModules = $this->prepareCustomModules($rawModules['custom']);

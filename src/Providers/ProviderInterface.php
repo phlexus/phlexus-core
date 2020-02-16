@@ -21,14 +21,13 @@ interface ProviderInterface extends InjectionAwareInterface
      * Register application service.
      *
      * @param array $parameters Custom parameters for Service Provider
-     * @return void
      */
-    public function register(array $parameters = []);
+    public function register(array $parameters = []): void;
 
     /**
      * Get the Service name.
      *
      * @return string
      */
-    public function getName();
+    public function getName(): string;
 }

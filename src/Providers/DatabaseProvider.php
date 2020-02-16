@@ -28,9 +28,8 @@ class DatabaseProvider extends AbstractProvider
      * Register application service.
      *
      * @param array $parameters Custom parameters for Service Provider
-     * @return void
      */
-    public function register(array $parameters = [])
+    public function register(array $parameters = []): void
     {
         $this->getDI()->setShared($this->providerName, function () use ($parameters) {
             return (new PdoFactory())->load($parameters);

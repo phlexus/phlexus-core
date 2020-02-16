@@ -14,7 +14,7 @@ final class RouterProviderTest extends TestCase
     /**
      * @test
      */
-    public function implementation()
+    public function implementation(): void
     {
         $class = $this->createMock(RouterProvider::class);
 

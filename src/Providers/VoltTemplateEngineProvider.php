@@ -28,7 +28,6 @@ class VoltTemplateEngineProvider extends AbstractProvider
      * Register application service.
      *
      * @param array $parameters
-     * @return void
      */
     public function register(array $parameters = []): void
     {
