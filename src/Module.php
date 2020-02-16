@@ -1,4 +1,14 @@
 <?php
+
+/**
+ * This file is part of the Phlexus CMS.
+ *
+ * (c) Phlexus CMS <cms@phlexus.io>
+ *
+ * For the full copyright and license information, please view
+ * the LICENSE file that was distributed with this source code.
+ */
+
 declare(strict_types=1);
 
 namespace Phlexus;
@@ -23,7 +33,7 @@ abstract class Module implements ModuleInterface
     protected $di;
 
     /**
-     * @var Manager
+     * @var ManagerInterface|null
      */
     protected $eventsManager;
 
@@ -76,12 +86,10 @@ abstract class Module implements ModuleInterface
      * Sets the events manager.
      *
      * @param  ManagerInterface $eventsManager
-     * @return $this
+     * @return void
      */
-    public function setEventsManager(ManagerInterface $eventsManager)
+    public function setEventsManager(ManagerInterface $eventsManager): void
     {
         $this->eventsManager = $eventsManager;
-
-        return $this;
     }
 }

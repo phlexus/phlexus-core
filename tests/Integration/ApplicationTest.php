@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Tests\Integration;
@@ -44,7 +45,7 @@ final class ApplicationTest extends IntegrationTestCase
      *
      * @param string $mode
      */
-    public function initMode(string $mode)
+    public function initMode(string $mode): void
     {
         $app = new Application('', $mode);
 
@@ -53,10 +54,8 @@ final class ApplicationTest extends IntegrationTestCase
 
     /**
      * @test
-     *
-     * @return void
      */
-    public function initDefault()
+    public function initDefault(): void
     {
         $app = new Application('');
         $this->assertInstanceOf(MvcApplication::class, $app->getApplication());
@@ -64,10 +63,8 @@ final class ApplicationTest extends IntegrationTestCase
 
     /**
      * @test
-     *
-     * @return void
      */
-    public function unknownMode()
+    public function unknownMode(): void
     {
         $this->expectException(InvalidArgumentException::class);
         new Application('', 'unknown');
@@ -79,7 +76,7 @@ final class ApplicationTest extends IntegrationTestCase
      *
      * @param string $path
      */
-    public function rootPath(string $path)
+    public function rootPath(string $path): void
     {
         $app = new Application($path);
 

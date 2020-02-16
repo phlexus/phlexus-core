@@ -1,4 +1,14 @@
 <?php
+
+/**
+ * This file is part of the Phlexus CMS.
+ *
+ * (c) Phlexus CMS <cms@phlexus.io>
+ *
+ * For the full copyright and license information, please view
+ * the LICENSE file that was distributed with this source code.
+ */
+
 declare(strict_types=1);
 
 namespace Phlexus\Providers;
@@ -18,12 +28,13 @@ class SessionProvider extends AbstractProvider
     /**
      * Register application service.
      *
+     * @psalm-suppress UndefinedMethod
+     *
      * @param array $parameters Custom parameters for Service Provider
-     * @return void
      */
-    public function register(array $parameters = [])
+    public function register(array $parameters = []): void
     {
-        $this->di->setShared($this->providerName, function () {
+        $this->getDI()->setShared($this->providerName, function () {
             $session = new Manager();
             $session->setAdapter(new Stream(['savePath' => '/tmp']));
             $session->start();

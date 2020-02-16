@@ -1,4 +1,14 @@
 <?php
+
+/**
+ * This file is part of the Phlexus CMS.
+ *
+ * (c) Phlexus CMS <cms@phlexus.io>
+ *
+ * For the full copyright and license information, please view
+ * the LICENSE file that was distributed with this source code.
+ */
+
 declare(strict_types=1);
 
 namespace Phlexus\Providers;
@@ -20,12 +30,14 @@ class DispatcherProvider extends AbstractProvider
      * Register application provider
      *
      * @param array $parameters
-     * @return void
      */
-    public function register(array $parameters = [])
+    public function register(array $parameters = []): void
     {
-        $this->di->setShared($this->providerName, function() {
-            if (phlexus_container(Application::APP_CONTAINER_NAME)->getMode() === Application::MODE_CLI) {
+        $this->getDI()->setShared($this->providerName, function () {
+            /** @var Application $app */
+            $app = phlexus_container(Application::APP_CONTAINER_NAME);
+
+            if ($app->getMode() === Application::MODE_CLI) {
                 $dispatcher = new CliDi();
             } else {
                 $dispatcher = new MvcDi();

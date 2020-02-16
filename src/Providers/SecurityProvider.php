@@ -1,4 +1,14 @@
 <?php
+
+/**
+ * This file is part of the Phlexus CMS.
+ *
+ * (c) Phlexus CMS <cms@phlexus.io>
+ *
+ * For the full copyright and license information, please view
+ * the LICENSE file that was distributed with this source code.
+ */
+
 declare(strict_types=1);
 
 namespace Phlexus\Providers;
@@ -10,12 +20,12 @@ class SecurityProvider extends AbstractProvider
     /**
      * Default hashing factor number rounds
      */
-    const DEFAULT_WORK_FACTOR = 12;
+    public const DEFAULT_WORK_FACTOR = 12;
 
     /**
      * Configuration key name
      */
-    const WORK_FACTOR_PARAM_KEY = 'work_factor';
+    public const WORK_FACTOR_PARAM_KEY = 'work_factor';
 
     /**
      * Provider name
@@ -28,11 +38,10 @@ class SecurityProvider extends AbstractProvider
      * Register application provider
      *
      * @param array $parameters
-     * @return void
      */
-    public function register(array $parameters = [])
+    public function register(array $parameters = []): void
     {
-        $this->di->setShared($this->providerName, function () use ($parameters) {
+        $this->getDI()->setShared($this->providerName, function () use ($parameters) {
             $workFactor = $parameters[self::WORK_FACTOR_PARAM_KEY] ?? self::DEFAULT_WORK_FACTOR;
 
             $security = new Security();

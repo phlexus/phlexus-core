@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<ruleset name="Phlexus CMS">
+    <description>Phlexus Coding Standards</description>
+    <arg value="-colors"/>
+    <arg value="s"/>
+    <arg value="p"/>
+    <rule ref="PSR12"/>
+
+    <file>src/</file>
+    <file>tests/Integration/</file>
+    <file>tests/Unit/</file>
+</ruleset>

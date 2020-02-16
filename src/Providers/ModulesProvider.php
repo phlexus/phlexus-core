@@ -1,16 +1,27 @@
 <?php
+
+/**
+ * This file is part of the Phlexus CMS.
+ *
+ * (c) Phlexus CMS <cms@phlexus.io>
+ *
+ * For the full copyright and license information, please view
+ * the LICENSE file that was distributed with this source code.
+ */
+
 declare(strict_types=1);
 
 namespace Phlexus\Providers;
 
 use Phalcon\Registry;
+use Phlexus\Application;
 
 class ModulesProvider extends AbstractProvider
 {
     /**
      * Constant to find match in composer vendor packages
      */
-    const PHLEXUS_NAMESPACE_PATTERN = 'Phlexus\Modules\\';
+    public const PHLEXUS_NAMESPACE_PATTERN = 'Phlexus\Modules\\';
 
     /**
      * Provider name
@@ -23,19 +34,19 @@ class ModulesProvider extends AbstractProvider
      * Register application provider
      *
      * @param array $rawModules
-     * @return void
      */
-    public function register(array $rawModules = [])
+    public function register(array $rawModules = []): void
     {
         $vendorModules = $this->prepareVendorModules($rawModules['vendor']);
         $customModules = $this->prepareCustomModules($rawModules['custom']);
         $modules = array_merge($vendorModules, $customModules);
 
-        phlexus_container('bootstrap')
-            ->getApplication()
+        /** @var Application $app */
+        $app = phlexus_container('bootstrap');
+        $app->getApplication()
             ->registerModules($modules);
 
-        $this->di->setShared($this->providerName, function () use ($modules) {
+        $this->getDI()->setShared($this->providerName, function () use ($modules) {
             $registry = new Registry();
             foreach ($modules as $name => $module) {
                 $registry->offsetSet($name, (object)$module);
@@ -49,7 +60,7 @@ class ModulesProvider extends AbstractProvider
      * @param array $vendorModules
      * @return array
      */
-    protected function prepareVendorModules(array $vendorModules = []) : array
+    protected function prepareVendorModules(array $vendorModules = []): array
     {
         $modules = [];
         foreach ($vendorModules as $namespace => $path) {
@@ -67,7 +78,7 @@ class ModulesProvider extends AbstractProvider
                 'router' => $path[0] . DIRECTORY_SEPARATOR . 'Config' . DIRECTORY_SEPARATOR . 'routes.php',
             ];
 
-            $this->di->setShared($className, $modules[$moduleName]);
+            $this->getDI()->setShared($className, $modules[$moduleName]);
         }
 
         return $modules;
@@ -77,7 +88,7 @@ class ModulesProvider extends AbstractProvider
      * @param array $customModules
      * @return array
      */
-    protected function prepareCustomModules(array $customModules = []) : array
+    protected function prepareCustomModules(array $customModules = []): array
     {
         return $customModules;
     }
