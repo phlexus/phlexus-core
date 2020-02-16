@@ -3,7 +3,6 @@ parameters:
 
     ignoreErrors:
         - '#Parameter \#1 \$eventsManager of method Phalcon#'
-        - '#must be compatible with Phalcon\\Events\\EventsAwareInterface::setEventsManager#'
         - '#PHPDoc tag @param has invalid value \(mixed\)#'
         - '#Function phlexus_config invoked with 1 parameter, 0 required.#'
         - '#Function phlexus_container invoked with 1 parameter, 0 required.#'

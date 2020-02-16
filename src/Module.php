@@ -88,7 +88,7 @@ abstract class Module implements ModuleInterface
      * @param  ManagerInterface $eventsManager
      * @return void
      */
-    public function setEventsManager(ManagerInterface $eventsManager)
+    public function setEventsManager(ManagerInterface $eventsManager): void
     {
         $this->eventsManager = $eventsManager;
     }
