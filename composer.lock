@@ -639,16 +639,16 @@
         },
         {
             "name": "phalcon/ide-stubs",
-            "version": "v4.0.3",
+            "version": "v4.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phalcon/ide-stubs.git",
-                "reference": "6835e8f09111b5dd486d643389b061c21a3dcd11"
+                "reference": "f3ef56204ded840477793edb58992f1bd88ffa36"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phalcon/ide-stubs/zipball/6835e8f09111b5dd486d643389b061c21a3dcd11",
-                "reference": "6835e8f09111b5dd486d643389b061c21a3dcd11",
+                "url": "https://api.github.com/repos/phalcon/ide-stubs/zipball/f3ef56204ded840477793edb58992f1bd88ffa36",
+                "reference": "f3ef56204ded840477793edb58992f1bd88ffa36",
                 "shasum": ""
             },
             "require": {
@@ -666,8 +666,8 @@
             "authors": [
                 {
                     "name": "Phalcon Team",
-                    "email": "team@phalconphp.com",
-                    "homepage": "https://phalconphp.com/en/team"
+                    "email": "team@phalconphp.io",
+                    "homepage": "https://phalconphp.io/en/team"
                 },
                 {
                     "name": "Contributors",
@@ -675,7 +675,7 @@
                 }
             ],
             "description": "The most complete Phalcon Framework IDE stubs library which enables autocompletion in modern IDEs.",
-            "homepage": "https://phalconphp.com",
+            "homepage": "https://phalconphp.io",
             "keywords": [
                 "Devtools",
                 "Eclipse",
@@ -687,7 +687,7 @@
                 "stub",
                 "stubs"
             ],
-            "time": "2020-01-25T23:24:50+00:00"
+            "time": "2020-02-16T08:55:47+00:00"
         },
         {
             "name": "phar-io/manifest",
@@ -1198,8 +1198,8 @@
             "authors": [
                 {
                     "name": "Sebastian Bergmann",
-                    "role": "lead",
-                    "email": "sebastian@phpunit.de"
+                    "email": "sebastian@phpunit.de",
+                    "role": "lead"
                 }
             ],
             "description": "Utility class for timing",
@@ -2001,8 +2001,8 @@
             "authors": [
                 {
                     "name": "Sebastian Bergmann",
-                    "role": "lead",
-                    "email": "sebastian@phpunit.de"
+                    "email": "sebastian@phpunit.de",
+                    "role": "lead"
                 }
             ],
             "description": "Collection of value objects that represent the types of the PHP type system",
