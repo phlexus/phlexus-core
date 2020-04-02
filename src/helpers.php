@@ -11,6 +11,10 @@
 
 declare(strict_types=1);
 
+/**
+ * TODO: Make it PSR-4 compatible
+ */
+
 if (!function_exists('phlexus_container')) {
     /**
      * Calls the default Dependency Injection container.
