@@ -38,6 +38,7 @@ use Phlexus\Providers\TagProvider;
 use Phlexus\Providers\UrlProvider;
 use Phlexus\Providers\ViewProvider;
 use Phlexus\Providers\VoltTemplateEngineProvider;
+use Phlexus\Providers\FlashProvider;
 
 /**
  * Plexus Application
@@ -142,6 +143,7 @@ class Application
         $extraProviders = $configs['providers'] ?? [];
         $securityParams = $configs['security'] ?? [];
         $applicationParams = $configs['application'] ?? [];
+        $flashParams = $configs['flash'] ?? [];
 
         // Init Generic Service Providers
         $this->initializeProvider(new RegistryProvider($this->di));
@@ -159,6 +161,7 @@ class Application
         $this->initializeProvider(new CookiesProvider($this->di));
         $this->initializeProvider(new SessionProvider($this->di));
         $this->initializeProvider(new SecurityProvider($this->di), $securityParams);
+        $this->initializeProvider(new FlashProvider($this->di), $flashParams);
 
         if (!empty($configs['db'])) {
             $this->initializeProvider(new DatabaseProvider($this->di), $configs['db']);
