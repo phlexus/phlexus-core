@@ -646,16 +646,16 @@
         },
         {
             "name": "phalcon/ide-stubs",
-            "version": "v4.0.4",
+            "version": "v4.0.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phalcon/ide-stubs.git",
-                "reference": "f3ef56204ded840477793edb58992f1bd88ffa36"
+                "reference": "d2adae3fba488ccba913a3f7fc310f23aa6de4a3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phalcon/ide-stubs/zipball/f3ef56204ded840477793edb58992f1bd88ffa36",
-                "reference": "f3ef56204ded840477793edb58992f1bd88ffa36",
+                "url": "https://api.github.com/repos/phalcon/ide-stubs/zipball/d2adae3fba488ccba913a3f7fc310f23aa6de4a3",
+                "reference": "d2adae3fba488ccba913a3f7fc310f23aa6de4a3",
                 "shasum": ""
             },
             "require": {
@@ -673,8 +673,8 @@
             "authors": [
                 {
                     "name": "Phalcon Team",
-                    "email": "team@phalconphp.io",
-                    "homepage": "https://phalconphp.io/en/team"
+                    "email": "team@phalcon.io",
+                    "homepage": "https://phalcon.io/en-us/team"
                 },
                 {
                     "name": "Contributors",
@@ -682,7 +682,7 @@
                 }
             ],
             "description": "The most complete Phalcon Framework IDE stubs library which enables autocompletion in modern IDEs.",
-            "homepage": "https://phalconphp.io",
+            "homepage": "https://phalcon.io",
             "keywords": [
                 "Devtools",
                 "Eclipse",
@@ -694,7 +694,7 @@
                 "stub",
                 "stubs"
             ],
-            "time": "2020-02-16T08:55:47+00:00"
+            "time": "2020-05-18T20:16:38+00:00"
         },
         {
             "name": "phar-io/manifest",
