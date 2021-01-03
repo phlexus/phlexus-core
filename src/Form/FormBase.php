@@ -13,8 +13,12 @@ namespace Phlexus\Form;
 
 use Phalcon\Forms\Form;
 use Phalcon\Forms\Element\Hidden;
+use Phalcon\Security;
 use Phalcon\Validation\Validator\Identical;
 
+/**
+ * @property Security $security
+ */
 abstract class FormBase extends Form
 {
     public function initialize()
