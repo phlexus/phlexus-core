@@ -29,7 +29,6 @@ ignore:
   - "*.json"
   - "*.md"
   - "*.dist"
-  # ignore folders and all its contents
   - ".github/.*"
   - "ide/.*"
   - "tests/.*"

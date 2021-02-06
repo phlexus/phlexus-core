@@ -15,8 +15,6 @@ namespace Phlexus\Providers;
 
 use Phalcon\Escaper;
 use Phalcon\Flash\Session as FlashSession;
-use Phalcon\Session\Adapter\Stream;
-use Phalcon\Session\Manager;
 
 class FlashProvider extends AbstractProvider
 {
@@ -36,22 +34,9 @@ class FlashProvider extends AbstractProvider
      */
     public function register(array $parameters = []): void
     {
-        $this->getDI()->setShared($this->providerName, function () use ($parameters) {
-            $session = new Manager();
-            
-            $files = new Stream(
-                [
-                    'savePath' => $parameters['path'],
-                ]
-            );
-            
-            $session->setAdapter($files);
-
-            $escaper = new Escaper();
-            
-            $flash   = new FlashSession($escaper, $session);
-
-            return $flash;
+        $session = $this->getDI()->getShared('session');
+        $this->getDI()->setShared($this->providerName, function () use ($session) {
+            return new FlashSession(new Escaper(), $session);
         });
     }
 }

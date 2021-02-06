@@ -13,27 +13,29 @@ namespace Phlexus\Form;
 
 use Phalcon\Forms\Form;
 use Phalcon\Forms\Element\Hidden;
+use Phalcon\Security;
 use Phalcon\Validation\Validator\Identical;
 
+/**
+ * @property Security $security
+ */
 abstract class FormBase extends Form
 {
-    protected $_csrf = 'csrf';
-
     public function initialize()
     {
         $csrf = new Hidden($this->getCsrfName());
 
         $csrf->setDefault($this->security->getToken())
             ->addValidator(new Identical([
-                'value'   => $this->security->getRequestToken(),
-                'message' => 'Invalid form!'
+                'value' => $this->security->getRequestToken(),
+                'message' => 'Invalid request'
             ]));
 
         $this->add($csrf);
     }
 
-    public function getCsrfName()
+    public function getCsrfName(): string
     {
-        return $this->_csrf;
+        return $this->security->getToken();
     }
 }
