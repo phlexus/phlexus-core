@@ -1,5 +1,5 @@
 {
-    "name": "local/phlexus-core",
+    "name": "phlexus/phlexus-core",
     "description": "Phlexus - Content Management System (CMS) based on Phalcon PHP Framework",
     "license": "BSD-3-Clause",
     "keywords": [
