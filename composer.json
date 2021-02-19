@@ -1,5 +1,5 @@
 {
-    "name": "phlexus/phlexus-core",
+    "name": "local/phlexus-core",
     "description": "Phlexus - Content Management System (CMS) based on Phalcon PHP Framework",
     "license": "BSD-3-Clause",
     "keywords": [
@@ -21,10 +21,7 @@
     "autoload": {
         "psr-4": {
             "Phlexus\\": "src/"
-        },
-        "files": [
-            "src/helpers.php"
-        ]
+        }
     },
     "autoload-dev": {
         "psr-4": {

@@ -15,6 +15,7 @@ namespace Phlexus\Providers;
 
 use Phalcon\Registry;
 use Phlexus\Application;
+use Phlexus\Helpers;
 
 class ModulesProvider extends AbstractProvider
 {
@@ -42,7 +43,7 @@ class ModulesProvider extends AbstractProvider
         $modules = array_merge($vendorModules, $customModules);
 
         /** @var Application $app */
-        $app = phlexus_container('bootstrap');
+        $app = Helpers::phlexusContainer('bootstrap');
         $app->getApplication()
             ->registerModules($modules);
 

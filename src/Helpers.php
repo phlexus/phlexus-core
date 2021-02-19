@@ -11,18 +11,17 @@
 
 declare(strict_types=1);
 
-/**
- * TODO: Make it PSR-4 compatible
- */
+namespace Phlexus;
 
-if (!function_exists('phlexus_container')) {
+class Helpers
+{
     /**
      * Calls the default Dependency Injection container.
      *
      * @param mixed
      * @return \Phalcon\Di\DiInterface
      */
-    function phlexus_container()
+    public static function phlexusContainer()
     {
         $default = \Phalcon\Di::getDefault();
         $args = func_get_args();
@@ -32,9 +31,7 @@ if (!function_exists('phlexus_container')) {
 
         return call_user_func_array([$default, 'get'], $args);
     }
-}
 
-if (!function_exists('phlexus_config')) {
     /**
      * Access configuration files
      *
@@ -44,7 +41,7 @@ if (!function_exists('phlexus_config')) {
      * @param mixed
      * @return mixed
      */
-    function phlexus_config()
+    public static function phlexusConfig()
     {
         $args = func_get_args();
         $config = \Phalcon\Di::getDefault()->getShared('config');
@@ -55,14 +52,12 @@ if (!function_exists('phlexus_config')) {
 
         return call_user_func_array([$config, 'path'], $args);
     }
-}
 
-if (!function_exists('phlexus_model')) {
     /**
      * @param string $model
      * @return mixed
      */
-    function phlexus_model(string $model)
+    public static function phlexusModel(string $model)
     {
         if (class_exists($model)) {
             /**
@@ -73,15 +68,13 @@ if (!function_exists('phlexus_model')) {
 
         return null;
     }
-}
 
-if (!function_exists('phlexus_themes_path')) {
     /**
      * @param string $config
      * @return string|null
      */
-    function phlexus_themes_path(string $config = 'theme.themes_dir')
+    public static function phlexusThemesPath(string $config = 'theme.themes_dir')
     {
-        return phlexus_config($config);
+        return self::phlexusConfig($config);
     }
 }

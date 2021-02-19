@@ -16,6 +16,7 @@ namespace Phlexus\Providers;
 use Phalcon\Config;
 use Phalcon\Mvc\Router;
 use Phalcon\Mvc\Router\GroupInterface;
+use Phlexus\Helpers;
 
 class RouterProvider extends AbstractProvider
 {
@@ -38,7 +39,7 @@ class RouterProvider extends AbstractProvider
             $router->removeExtraSlashes(true);
 
             /** @var Config $modules */
-            $modules = phlexus_container('modules');
+            $modules = Helpers::phlexusContainer('modules');
             $modules = $modules->toArray();
             foreach ($modules as $module) {
                 if (empty($module->router)) {
@@ -57,7 +58,7 @@ class RouterProvider extends AbstractProvider
                 $router->mount($group);
             }
 
-            $router->setDI(phlexus_container());
+            $router->setDI(Helpers::phlexusContainer());
 
             return $router;
         });

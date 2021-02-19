@@ -16,6 +16,7 @@ namespace Phlexus\Providers;
 use Phalcon\Cli\Dispatcher as CliDi;
 use Phalcon\Mvc\Dispatcher as MvcDi;
 use Phlexus\Application;
+use Phlexus\Helpers;
 
 class DispatcherProvider extends AbstractProvider
 {
@@ -35,7 +36,7 @@ class DispatcherProvider extends AbstractProvider
     {
         $this->getDI()->setShared($this->providerName, function () {
             /** @var Application $app */
-            $app = phlexus_container(Application::APP_CONTAINER_NAME);
+            $app = Helpers::phlexusContainer(Application::APP_CONTAINER_NAME);
 
             if ($app->getMode() === Application::MODE_CLI) {
                 $dispatcher = new CliDi();
@@ -43,8 +44,8 @@ class DispatcherProvider extends AbstractProvider
                 $dispatcher = new MvcDi();
             }
 
-            $dispatcher->setDI(phlexus_container());
-            $dispatcher->setEventsManager(phlexus_container('eventsManager'));
+            $dispatcher->setDI(Helpers::phlexusContainer());
+            $dispatcher->setEventsManager(Helpers::phlexusContainer('eventsManager'));
 
             return $dispatcher;
         });
