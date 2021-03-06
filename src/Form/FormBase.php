@@ -25,17 +25,19 @@ abstract class FormBase extends Form
     {
         $csrf = new Hidden($this->getCsrfName());
 
-        $csrf->setDefault($this->security->getToken())
-            ->addValidator(new Identical([
-                'value' => $this->security->getRequestToken(),
-                'message' => 'Invalid request'
-            ]));
+        $csrf->setDefault($this->security->getToken());
 
         $this->add($csrf);
     }
 
     public function getCsrfName(): string
     {
-        return $this->security->getToken();
+        return $this->security->getTokenKey();
+    }
+
+    public function isValid($data = null, $entity = null): bool {
+        $csrf = $this->security->checkToken();
+
+        return parent::isValid($data, $entity) && $csrf;
     }
 }
