@@ -77,4 +77,14 @@ class Helpers
     {
         return self::phlexusConfig($config);
     }
+
+    /**
+     * @param string $config
+     * @return string|null
+     */
+    public static function phlexusAssetsPath()
+    {
+        $theme = self::phlexusConfig('theme');
+        return $theme->theme_public . $theme->theme_user . '/';
+    }
 }
