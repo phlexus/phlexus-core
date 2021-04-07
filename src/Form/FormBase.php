@@ -21,23 +21,59 @@ use Phalcon\Validation\Validator\Identical;
  */
 abstract class FormBase extends Form
 {
-    public function initialize()
+
+    // CSRF name
+    const CSRF_NAME = 'csrf';
+
+    /**
+     * Constructor
+     */
+    public function __construct($gerenateCsrf = true)
     {
-        $csrf = new Hidden($this->getCsrfName());
-
-        $csrf->setDefault($this->security->getToken());
-
-        $this->add($csrf);
+        $this->assignCsrf($gerenateCsrf);
     }
 
+    /**
+     * Get Csrf name
+     *
+     * @return String Csrf name
+     */
     public function getCsrfName(): string
     {
         return $this->security->getTokenKey();
     }
 
-    public function isValid($data = null, $entity = null): bool {
-        $csrf = $this->security->checkToken();
+    /**
+     * Is Valid
+     * 
+     * @param array $data The form data
+     * @param object $entity The entity modal
+     * 
+     * @return bool
+     */
+    #public function isValid($data = null, $entity = null): bool {
+    #    $csrf = $this->security->checkToken();
+    #
+    #    return parent::isValid($data, $entity) && $csrf;
+    #}
 
-        return parent::isValid($data, $entity) && $csrf;
+    /**
+     * Assign Csrf
+     * 
+     * @return void
+     */
+    private function assignCsrf($gerenateCsrf) {
+        $csrf = new Hidden(self::CSRF_NAME);
+
+        if($gerenateCsrf) {
+            $csrf->setDefault($this->security->getToken());
+        }
+
+        $csrf->addValidator(new Identical(array(
+            'value' => $this->security->getSessionToken(),
+            'message' => 'Invalid Form'
+        )));
+
+        $this->add($csrf);
     }
 }
