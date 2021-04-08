@@ -30,6 +30,8 @@ abstract class FormBase extends Form
      */
     public function __construct($gerenateCsrf = true)
     {
+        parent::__construct();
+        
         $this->assignCsrf($gerenateCsrf);
     }
 
