@@ -36,31 +36,9 @@ abstract class FormBase extends Form
     }
 
     /**
-     * Get Csrf name
-     *
-     * @return String Csrf name
-     */
-    public function getCsrfName(): string
-    {
-        return $this->security->getTokenKey();
-    }
-
-    /**
-     * Is Valid
-     * 
-     * @param array $data The form data
-     * @param object $entity The entity modal
-     * 
-     * @return bool
-     */
-    #public function isValid($data = null, $entity = null): bool {
-    #    $csrf = $this->security->checkToken();
-    #
-    #    return parent::isValid($data, $entity) && $csrf;
-    #}
-
-    /**
      * Assign Csrf
+     * 
+     * @param bool $gerenateCsrf Should csrf be generated
      * 
      * @return void
      */
