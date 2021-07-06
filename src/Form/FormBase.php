@@ -21,21 +21,39 @@ use Phalcon\Validation\Validator\Identical;
  */
 abstract class FormBase extends Form
 {
-    public function initialize()
+
+    // CSRF name
+    const CSRF_NAME = 'csrf';
+
+    /**
+     * Constructor
+     */
+    public function __construct($gerenateCsrf = true)
     {
-        $csrf = new Hidden($this->getCsrfName());
-
-        $csrf->setDefault($this->security->getToken())
-            ->addValidator(new Identical([
-                'value' => $this->security->getRequestToken(),
-                'message' => 'Invalid request'
-            ]));
-
-        $this->add($csrf);
+        parent::__construct();
+        
+        $this->assignCsrf($gerenateCsrf);
     }
 
-    public function getCsrfName(): string
-    {
-        return $this->security->getToken();
+    /**
+     * Assign Csrf
+     * 
+     * @param bool $gerenateCsrf Should csrf be generated
+     * 
+     * @return void
+     */
+    private function assignCsrf($gerenateCsrf) {
+        $csrf = new Hidden(self::CSRF_NAME);
+
+        if($gerenateCsrf) {
+            $csrf->setDefault($this->security->getToken());
+        }
+
+        $csrf->addValidator(new Identical(array(
+            'value' => $this->security->getSessionToken(),
+            'message' => 'Invalid Form'
+        )));
+
+        $this->add($csrf);
     }
 }

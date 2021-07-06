@@ -17,6 +17,7 @@ use Phalcon\Di\DiInterface;
 use Phalcon\Events\Manager;
 use Phalcon\Events\ManagerInterface;
 use Phlexus\Module\ModuleInterface;
+use Phlexus\Helpers;
 
 /**
  * Phlexus Module Definition
@@ -43,7 +44,7 @@ abstract class Module implements ModuleInterface
      */
     public function __construct(DiInterface $di = null, Manager $manager = null)
     {
-        $this->di = $di ?: phlexus_container();
+        $this->di = $di ?: Helpers::phlexusContainer();
         $this->eventsManager = $manager;
     }
 
