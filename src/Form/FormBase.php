@@ -45,7 +45,7 @@ abstract class FormBase extends Form
     private function assignCsrf($gerenateCsrf) {
         $csrf = new Hidden(self::CSRF_NAME);
 
-        if($gerenateCsrf) {
+        if ($gerenateCsrf) {
             $csrf->setDefault($this->security->getToken());
         }
 
