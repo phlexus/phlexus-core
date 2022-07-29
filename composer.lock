@@ -2724,16 +2724,16 @@
         },
         {
             "name": "symfony/service-contracts",
-            "version": "v1.1.12",
+            "version": "v1.1.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/service-contracts.git",
-                "reference": "eedb374f02031714a48848758a27812f3eca317a"
+                "reference": "afa00c500c2d6aea6e3b2f4862355f507bc5ebb4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/service-contracts/zipball/eedb374f02031714a48848758a27812f3eca317a",
-                "reference": "eedb374f02031714a48848758a27812f3eca317a",
+                "url": "https://api.github.com/repos/symfony/service-contracts/zipball/afa00c500c2d6aea6e3b2f4862355f507bc5ebb4",
+                "reference": "afa00c500c2d6aea6e3b2f4862355f507bc5ebb4",
                 "shasum": ""
             },
             "require": {
@@ -2796,7 +2796,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-03-09T13:39:03+00:00"
+            "time": "2022-05-27T14:01:05+00:00"
         },
         {
             "name": "theseer/tokenizer",
@@ -2846,16 +2846,16 @@
         },
         {
             "name": "vimeo/psalm",
-            "version": "4.24.0",
+            "version": "v4.25.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vimeo/psalm.git",
-                "reference": "06dd975cb55d36af80f242561738f16c5f58264f"
+                "reference": "d7cd84c4ebca74ba3419b9601f81d177bcbe2aac"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vimeo/psalm/zipball/06dd975cb55d36af80f242561738f16c5f58264f",
-                "reference": "06dd975cb55d36af80f242561738f16c5f58264f",
+                "url": "https://api.github.com/repos/vimeo/psalm/zipball/d7cd84c4ebca74ba3419b9601f81d177bcbe2aac",
+                "reference": "d7cd84c4ebca74ba3419b9601f81d177bcbe2aac",
                 "shasum": ""
             },
             "require": {
@@ -2945,7 +2945,7 @@
                 "inspection",
                 "php"
             ],
-            "time": "2022-06-26T11:47:54+00:00"
+            "time": "2022-07-25T17:04:37+00:00"
         },
         {
             "name": "webmozart/assert",
